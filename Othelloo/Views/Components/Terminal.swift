@@ -11,7 +11,7 @@ struct Terminal: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 5)
             .fill(backgroundColor)
-            .frame(width: UIScreen.main.bounds.width - 30, height: 200)
+            .frame(width: UIScreen.main.bounds.width - 30, height: 150)
     }
     
     let backgroundColor = Color("Black")

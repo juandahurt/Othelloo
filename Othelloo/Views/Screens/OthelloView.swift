@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct OthelloView: View {
-    
     var background: some View {
         Rectangle()
             .fill(backgroundColor)
@@ -20,10 +19,11 @@ struct OthelloView: View {
         ZStack {
             background
             VStack {
-                Board()
-                Spacer(minLength: 30)
+                Board(state: Othello().state)
+                Spacer()
                 Terminal()
             }
+            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)
             .aspectRatio(contentMode: .fit)
         }
     }

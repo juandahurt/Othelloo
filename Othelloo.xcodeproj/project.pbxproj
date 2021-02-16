@@ -14,6 +14,14 @@
 		3D4E2BC625DC18860064801A /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4E2BC525DC18860064801A /* Board.swift */; };
 		3D4E2BC925DC1F010064801A /* OthelloView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4E2BC825DC1F010064801A /* OthelloView.swift */; };
 		3D4E2BCC25DC1FD60064801A /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4E2BCB25DC1FD60064801A /* Terminal.swift */; };
+		3DC0240A25DC5229007B6E73 /* Othello.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0240925DC5229007B6E73 /* Othello.swift */; };
+		3DC0240D25DC5239007B6E73 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0240C25DC5239007B6E73 /* Game.swift */; };
+		3DC0241025DC52B2007B6E73 /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0240F25DC52B2007B6E73 /* Move.swift */; };
+		3DC0241325DC52BA007B6E73 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0241225DC52BA007B6E73 /* Position.swift */; };
+		3DC0241625DC5309007B6E73 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0241525DC5309007B6E73 /* Player.swift */; };
+		3DC0241925DC5734007B6E73 /* AlphaBeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0241825DC5734007B6E73 /* AlphaBeta.swift */; };
+		3DC0241D25DC6892007B6E73 /* Int+Infinity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0241C25DC6892007B6E73 /* Int+Infinity.swift */; };
+		3DE360C025DC775800699236 /* OthelloVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE360BF25DC775800699236 /* OthelloVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +34,14 @@
 		3D4E2BC525DC18860064801A /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		3D4E2BC825DC1F010064801A /* OthelloView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthelloView.swift; sourceTree = "<group>"; };
 		3D4E2BCB25DC1FD60064801A /* Terminal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terminal.swift; sourceTree = "<group>"; };
+		3DC0240925DC5229007B6E73 /* Othello.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Othello.swift; sourceTree = "<group>"; };
+		3DC0240C25DC5239007B6E73 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		3DC0240F25DC52B2007B6E73 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
+		3DC0241225DC52BA007B6E73 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		3DC0241525DC5309007B6E73 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		3DC0241825DC5734007B6E73 /* AlphaBeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaBeta.swift; sourceTree = "<group>"; };
+		3DC0241C25DC6892007B6E73 /* Int+Infinity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Infinity.swift"; sourceTree = "<group>"; };
+		3DE360BF25DC775800699236 /* OthelloVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthelloVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +74,8 @@
 		3D4E2BB025DC18400064801A /* Othelloo */ = {
 			isa = PBXGroup;
 			children = (
+				3DE360BE25DC773A00699236 /* ViewModels */,
+				3DC0241B25DC6884007B6E73 /* Extensions */,
 				3D4E2BC225DC185C0064801A /* Models */,
 				3D4E2BC125DC18560064801A /* Views */,
 				3D4E2BB125DC18400064801A /* OthellooApp.swift */,
@@ -89,6 +107,12 @@
 		3D4E2BC225DC185C0064801A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3DC0241825DC5734007B6E73 /* AlphaBeta.swift */,
+				3DC0240925DC5229007B6E73 /* Othello.swift */,
+				3DC0240C25DC5239007B6E73 /* Game.swift */,
+				3DC0240F25DC52B2007B6E73 /* Move.swift */,
+				3DC0241225DC52BA007B6E73 /* Position.swift */,
+				3DC0241525DC5309007B6E73 /* Player.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -108,6 +132,22 @@
 				3D4E2BC825DC1F010064801A /* OthelloView.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		3DC0241B25DC6884007B6E73 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3DC0241C25DC6892007B6E73 /* Int+Infinity.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3DE360BE25DC773A00699236 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				3DE360BF25DC775800699236 /* OthelloVM.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,9 +221,17 @@
 			files = (
 				3D4E2BB425DC18400064801A /* ContentView.swift in Sources */,
 				3D4E2BCC25DC1FD60064801A /* Terminal.swift in Sources */,
+				3DC0240D25DC5239007B6E73 /* Game.swift in Sources */,
 				3D4E2BB225DC18400064801A /* OthellooApp.swift in Sources */,
+				3DC0241025DC52B2007B6E73 /* Move.swift in Sources */,
+				3DC0240A25DC5229007B6E73 /* Othello.swift in Sources */,
 				3D4E2BC925DC1F010064801A /* OthelloView.swift in Sources */,
+				3DC0241925DC5734007B6E73 /* AlphaBeta.swift in Sources */,
+				3DE360C025DC775800699236 /* OthelloVM.swift in Sources */,
 				3D4E2BC625DC18860064801A /* Board.swift in Sources */,
+				3DC0241D25DC6892007B6E73 /* Int+Infinity.swift in Sources */,
+				3DC0241625DC5309007B6E73 /* Player.swift in Sources */,
+				3DC0241325DC52BA007B6E73 /* Position.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
