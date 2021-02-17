@@ -12,12 +12,6 @@ import Foundation
 protocol Game {
     associatedtype State
     
-    /// Returns all the allowable moves.
-    /// - Parameters:
-    ///   - player: current player.
-    ///   - state: current state of the game.
-    func moves(for player: Player, at state: State) -> [Move]
-    
     /// Returns all the allowable actions.
     /// - Parameters:
     ///   - player: current player.

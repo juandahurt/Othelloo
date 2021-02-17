@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Board: View {
     var state: Othello.State
+    var possibleMovements: [Movement]
     
     func cell(row: Int, col: Int) -> some View {
         let screenWidth = UIScreen.main.bounds.width
@@ -24,6 +25,10 @@ struct Board: View {
                     Circle()
                         .fill(player == .user ? userColor : cpuColor)
                         .frame(width: cellWidth * 0.8, height: cellWidth * 0.8)
+                } else {
+                    Circle()
+                        .fill(possibleMovements.contains(where: { $0.to.row == row && $0.to.col == col }) ? possibleMovesColor : Color.clear)
+                        .frame(width: cellWidth * 0.12, height: cellWidth * 0.12)
                 }
             }
         }
@@ -51,6 +56,7 @@ struct Board: View {
     }
     
     // MARK: - UI Constants
+    let possibleMovesColor = Color("White").opacity(0.7)
     let userColor = Color("White")
     let cpuColor = Color("Black")
     let greenLightColor = Color("Green-Light")

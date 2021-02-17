@@ -15,5 +15,5 @@ struct Position {
 
 
 extension Position {
-    static let outsideOfBoard = Position(row: -1, col: -1, player: .none)
+    static let test = Position(row: 0, col: 0, player: .none)
 }

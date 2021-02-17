@@ -8,19 +8,26 @@
 import Foundation
 
 
-/// Represents a player move.
-struct Move {
+/// Represents an user movement.
+struct Movement {
     /// Position where the move starts.
     var from: Position
     
     /// Positions where the move finishes.
     var to: Position
     
-    /// Player who makes the move.
-    var player: Player
-}
-
-
-extension Move {
-    static let unknown = Move(from: .outsideOfBoard, to: .outsideOfBoard, player: .none)
+    /// Direction of the move
+    var direction: Direction
+    
+    enum Direction {
+        case top
+        case right
+        case bottom
+        case left
+        case upRight
+        case upLeft
+        case bottomRight
+        case bottomLeft
+        static let directions: [Direction] = [top, right, bottom, left]
+    }
 }

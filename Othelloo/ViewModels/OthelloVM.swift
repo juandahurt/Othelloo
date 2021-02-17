@@ -17,4 +17,8 @@ class OthelloVM: ObservableObject {
     var currentState: Othello.State {
         othello.state
     }
+    
+    var possibleMoves: [Movement] {
+        othello.possibleMovements
+    }
 }

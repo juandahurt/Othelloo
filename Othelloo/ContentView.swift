@@ -9,12 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        OthelloView()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        OthelloView(othelloVM: OthelloVM())
     }
 }

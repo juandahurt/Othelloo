@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D42C00B25DCAB3F00170A94 /* OthelloMovementChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42C00A25DCAB3F00170A94 /* OthelloMovementChecker.swift */; };
+		3D42C00E25DCAC9D00170A94 /* MovementChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42C00D25DCAC9D00170A94 /* MovementChecker.swift */; };
 		3D4E2BB225DC18400064801A /* OthellooApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4E2BB125DC18400064801A /* OthellooApp.swift */; };
 		3D4E2BB425DC18400064801A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4E2BB325DC18400064801A /* ContentView.swift */; };
 		3D4E2BB625DC18430064801A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D4E2BB525DC18430064801A /* Assets.xcassets */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D42C00A25DCAB3F00170A94 /* OthelloMovementChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthelloMovementChecker.swift; sourceTree = "<group>"; };
+		3D42C00D25DCAC9D00170A94 /* MovementChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementChecker.swift; sourceTree = "<group>"; };
 		3D4E2BAE25DC18400064801A /* Othelloo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Othelloo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D4E2BB125DC18400064801A /* OthellooApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthellooApp.swift; sourceTree = "<group>"; };
 		3D4E2BB325DC18400064801A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 				3DC0240F25DC52B2007B6E73 /* Move.swift */,
 				3DC0241225DC52BA007B6E73 /* Position.swift */,
 				3DC0241525DC5309007B6E73 /* Player.swift */,
+				3D42C00A25DCAB3F00170A94 /* OthelloMovementChecker.swift */,
+				3D42C00D25DCAC9D00170A94 /* MovementChecker.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -228,7 +234,9 @@
 				3D4E2BC925DC1F010064801A /* OthelloView.swift in Sources */,
 				3DC0241925DC5734007B6E73 /* AlphaBeta.swift in Sources */,
 				3DE360C025DC775800699236 /* OthelloVM.swift in Sources */,
+				3D42C00E25DCAC9D00170A94 /* MovementChecker.swift in Sources */,
 				3D4E2BC625DC18860064801A /* Board.swift in Sources */,
+				3D42C00B25DCAB3F00170A94 /* OthelloMovementChecker.swift in Sources */,
 				3DC0241D25DC6892007B6E73 /* Int+Infinity.swift in Sources */,
 				3DC0241625DC5309007B6E73 /* Player.swift in Sources */,
 				3DC0241325DC52BA007B6E73 /* Position.swift in Sources */,

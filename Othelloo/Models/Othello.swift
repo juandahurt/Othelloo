@@ -13,12 +13,19 @@ struct Othello: Game {
     /// Current state of the game
     var state: State = []
     
+    /// Current player
+    var player: Player = .user
+    
+    /// Movements that user can make
+    var possibleMovements: [Movement] = []
+    
     /// Contains the cost of every postion on the board.
     var costTable: [[Int]] = []
     
     init() {
         initState()
         initCostTable()
+        initPossibleMoves()
     }
     
     // MARK: - Initalizers
@@ -50,15 +57,11 @@ struct Othello: Game {
         ]
     }
     
-    // MARK: - Game Implementation
-    func moves(for player: Player, at state: State) -> [Move] {
-//        guard player != .none else { return [] }
-//        var oponent: Player
-//        if player == .user { oponent = .cpu }
-//        else { oponent = .user }
-        []
+    mutating private func initPossibleMoves() {
+        possibleMovements = moves()
     }
     
+    // MARK: - Game Implementation
     func actions(for player: Player, at state: State) -> [State] {
         []
     }
@@ -69,5 +72,28 @@ struct Othello: Game {
     
     func isTerminal(state: State) -> Bool {
         true
+    }
+    
+    /// Returns all the allowable moves for the user.
+    mutating func moves() -> [Movement] {
+        guard player != .none else { return [] }
+        // find the user positions
+        var userPositions: [Position] = []
+        var moves: [Movement] = []
+        for row in 0..<8 {
+            for col in 0..<8 {
+                let position = state[row][col]
+                if position.player == .user { userPositions.append(position) }
+            }
+        }
+        let movesChecker = OthelloMovementChecker()
+        for position in userPositions {
+            for direction in Movement.Direction.directions {
+                if let move = movesChecker.checkIfUserCanMove(from: position, to: direction, state: state) {
+                    moves.append(move)
+                }
+            }
+        }
+        return moves
     }
 }

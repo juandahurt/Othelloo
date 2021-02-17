@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct OthelloView: View {
+    @StateObject var othelloVM: OthelloVM
+    
     var background: some View {
         Rectangle()
             .fill(backgroundColor)
@@ -19,7 +21,7 @@ struct OthelloView: View {
         ZStack {
             background
             VStack {
-                Board(state: Othello().state)
+                Board(state: othelloVM.currentState, possibleMovements: othelloVM.possibleMoves)
                 Spacer()
                 Terminal()
             }
@@ -31,8 +33,8 @@ struct OthelloView: View {
     let backgroundColor = Color("Green")
 }
 
-struct OthelloView_Previews: PreviewProvider {
-    static var previews: some View {
-        OthelloView()
-    }
-}
+//struct OthelloView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        OthelloView(
+//    }
+//}
