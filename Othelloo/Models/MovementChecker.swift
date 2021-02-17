@@ -15,7 +15,8 @@ protocol MovementChecker {
     /// - Parameters:
     ///   - position: initial position
     ///   - direction: move direction
+    ///   - player: current player
     ///   - state: current state of the game
-    /// - Returns: All the possible movements.
-    func checkIfUserCanMove(from position: Position, to direction: Movement.Direction, state: State) -> Movement?
+    /// - Returns: The possible movement.
+    func checkIfPlayerCanMove(from position: Position, to direction: Movement.Direction, player: Player, state: State) -> Movement?
 }

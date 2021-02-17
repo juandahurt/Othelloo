@@ -11,10 +11,10 @@ import Foundation
 struct OthelloMovementChecker: MovementChecker {
     typealias State = Othello.State
     
-    func checkIfUserCanMove(from position: Position, to direction: Movement.Direction, state: State) -> Movement? {
-        if let modifier = chooseModifier(direction: direction) {
+    func checkIfPlayerCanMove(from position: Position, to direction: Movement.Direction, player: Player, state: State) -> Movement? {
+        if let modifier = ValueModifier.chooseModifier(direction: direction) {
             var value: Int
-            switch modifier.attribute {
+            switch modifier.valueType {
             case .column:
                 value = position.col
                 break
@@ -23,10 +23,13 @@ struct OthelloMovementChecker: MovementChecker {
                 break
             }
             modifier.modifier(&value)
-            var foundOneCpuPlace = false
+            var foundOponent = false
+            let oponent: Player
+            if player == .cpu { oponent = .user }
+            else { oponent = .cpu }
             while !modifier.stopCondition(value) {
                 let currentPos: Position
-                switch modifier.attribute {
+                switch modifier.valueType {
                 case .column:
                     currentPos = state[position.row][value]
                     break
@@ -34,21 +37,21 @@ struct OthelloMovementChecker: MovementChecker {
                     currentPos = state[value][position.col]
                     break
                 }
-                let player = currentPos.player
-                if player == .cpu {
-                    foundOneCpuPlace = true
+                let currentPlayer = currentPos.player
+                if currentPlayer == oponent {
+                    foundOponent = true
                 }
-                if player == .none {
+                if currentPlayer == .none {
                     // if the place is empty
-                    if foundOneCpuPlace {
+                    if foundOponent {
                         return Movement(
                             from: position,
                             to: currentPos,
-                            direction: .right
+                            direction: direction
                         )
                     }
                 }
-                if player == .user {
+                if currentPlayer == player {
                     return nil
                 }
                 modifier.modifier(&value)
@@ -56,68 +59,4 @@ struct OthelloMovementChecker: MovementChecker {
         }
         return nil
     }
-    
-    
-    /// Chooses the correct modifier
-    /// - Parameter direction: movement direction
-    /// - Returns: The correct modifier.
-    private func chooseModifier(direction: Movement.Direction) -> AttributeModifier? {
-        switch direction {
-        case .top:
-            return AttributeModifier(
-                attribute: .row,
-                modifier: { value in
-                    value -= 1
-                },
-                stopCondition: { value in
-                    value == 0
-                }
-            )
-        case .right:
-            return AttributeModifier(
-                attribute: .column,
-                modifier: { value in
-                    value += 1
-                },
-                stopCondition: { value in
-                    value == 8
-                }
-            )
-        case .bottom:
-            return AttributeModifier(
-                attribute: .row,
-                modifier: { value in
-                    value += 1
-                },
-                stopCondition: { value in
-                    value == 8
-                }
-            )
-        case .left:
-            return AttributeModifier(
-                attribute: .column,
-                modifier: { value in
-                    value -= 1
-                },
-                stopCondition: { value in
-                    value == 0
-                }
-            )
-        default:
-            return nil
-        }
-    }
-}
-
-
-struct AttributeModifier {
-    var attribute: Attribute
-    var modifier: (inout Int) -> Void
-    var stopCondition: (Int) -> Bool
-}
-
-
-enum Attribute {
-    case column
-    case row
 }

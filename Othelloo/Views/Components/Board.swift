@@ -10,11 +10,13 @@ import SwiftUI
 struct Board: View {
     var state: Othello.State
     var possibleMovements: [Movement]
+    var possibleMovementOnTap: (Movement) -> Void
     
     func cell(row: Int, col: Int) -> some View {
         let screenWidth = UIScreen.main.bounds.width
         let cellWidth = (screenWidth - 50) / 8
         let player = state[row][col].player
+        let possibleMovement = possibleMovements.first(where: { $0.to.row == row && $0.to.col == col })
         
         return ZStack {
             Rectangle()
@@ -27,9 +29,13 @@ struct Board: View {
                         .frame(width: cellWidth * 0.8, height: cellWidth * 0.8)
                 } else {
                     Circle()
-                        .fill(possibleMovements.contains(where: { $0.to.row == row && $0.to.col == col }) ? possibleMovesColor : Color.clear)
+                        .fill(possibleMovement != nil ? possibleMovementsColor : Color.clear)
                         .frame(width: cellWidth * 0.12, height: cellWidth * 0.12)
                 }
+            }
+        }.onTapGesture {
+            if let movement = possibleMovement {
+                possibleMovementOnTap(movement)
             }
         }
     }
@@ -56,7 +62,7 @@ struct Board: View {
     }
     
     // MARK: - UI Constants
-    let possibleMovesColor = Color("White").opacity(0.7)
+    let possibleMovementsColor = Color("White").opacity(0.7)
     let userColor = Color("White")
     let cpuColor = Color("Black")
     let greenLightColor = Color("Green-Light")

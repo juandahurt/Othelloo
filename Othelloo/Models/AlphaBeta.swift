@@ -21,7 +21,7 @@ struct AlphaBeta<T: Game> {
     /// - Parameter state: current state of the game
     /// - Parameter depth: maximum depth
     /// - Returns: The best action for the machine
-    func run(state: T.State, depth: Int) -> T.State {
+    func run(state: T.State) -> T.State {
         var bestValue: Int = -.infinity
         var bestAction: T.State = state
         var alpha: Int = -.infinity

@@ -21,7 +21,14 @@ struct OthelloView: View {
         ZStack {
             background
             VStack {
-                Board(state: othelloVM.currentState, possibleMovements: othelloVM.possibleMoves)
+                Board(state: othelloVM.currentState, possibleMovements: othelloVM.possibleMoves, possibleMovementOnTap: { movement in
+                    withAnimation(.spring()) {
+                        othelloVM.userTurn(movement: movement)
+                    }
+                    withAnimation(Animation.spring().delay(0.7)) {
+                        othelloVM.cpuTurn()
+                    }
+                })
                 Spacer()
                 Terminal()
             }

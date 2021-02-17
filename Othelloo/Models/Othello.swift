@@ -13,9 +13,6 @@ struct Othello: Game {
     /// Current state of the game
     var state: State = []
     
-    /// Current player
-    var player: Player = .user
-    
     /// Movements that user can make
     var possibleMovements: [Movement] = []
     
@@ -58,42 +55,76 @@ struct Othello: Game {
     }
     
     mutating private func initPossibleMoves() {
-        possibleMovements = moves()
+        possibleMovements = movements(for: .user)
     }
     
     // MARK: - Game Implementation
     func actions(for player: Player, at state: State) -> [State] {
-        []
+        let movements = self.movements(for: player)
+        var actions = [State]()
+        let excecutor = OthelloMovementExcecutor()
+        for movement in movements {
+            actions.append(excecutor.excecute(movement: movement, by: player, in: state))
+        }
+        return actions
     }
     
     func utility(of state: State, for player: Player) -> Int {
-        0
+        var playerSum = 0
+        var oponentSum = 0
+        let oponent: Player
+        if player == .cpu { oponent = .user }
+        else { oponent = .cpu }
+        for row in 0..<8 {
+            for col in 0..<8 {
+                if state[row][col].player == player {
+                    playerSum += costTable[row][col]
+                } else if state[row][col].player == oponent {
+                    oponentSum += costTable[row][col]
+                }
+            }
+        }
+        return playerSum - oponentSum
     }
     
     func isTerminal(state: State) -> Bool {
-        true
+        false
     }
     
-    /// Returns all the allowable moves for the user.
-    mutating func moves() -> [Movement] {
-        guard player != .none else { return [] }
+    /// Returns all the allowable movements for the user.
+    func movements(for player: Player) -> [Movement] {
         // find the user positions
         var userPositions: [Position] = []
-        var moves: [Movement] = []
+        var movements: [Movement] = []
         for row in 0..<8 {
             for col in 0..<8 {
                 let position = state[row][col]
-                if position.player == .user { userPositions.append(position) }
+                if position.player == player { userPositions.append(position) }
             }
         }
         let movesChecker = OthelloMovementChecker()
         for position in userPositions {
             for direction in Movement.Direction.directions {
-                if let move = movesChecker.checkIfUserCanMove(from: position, to: direction, state: state) {
-                    moves.append(move)
+                if let movement = movesChecker.checkIfPlayerCanMove(from: position, to: direction, player: player, state: state) {
+                    movements.append(movement)
                 }
             }
         }
-        return moves
+        return movements
+    }
+    
+    /// Excecutes an user movement that modifes the current state
+    /// - Parameter movement: movement to be excecuted
+    mutating func userTurn(movement: Movement) {
+        let excecutor = OthelloMovementExcecutor()
+        self.state = excecutor.excecute(movement: movement, by: .user, in: self.state)
+        possibleMovements.removeAll()
+    }
+    
+    /// Excecutes a cpu movement using the alpha-beta algorithm
+    mutating func cpuTurn() {
+        let alphaBeta = AlphaBeta(game: self, depth: 0)
+        self.state = alphaBeta.run(state: self.state)
+        possibleMovements = movements(for: .user)
     }
 }

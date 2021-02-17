@@ -21,4 +21,12 @@ class OthelloVM: ObservableObject {
     var possibleMoves: [Movement] {
         othello.possibleMovements
     }
+    
+    func userTurn(movement: Movement) {
+        othello.userTurn(movement: movement)
+    }
+    
+    func cpuTurn() {
+        othello.cpuTurn()
+    }
 }
