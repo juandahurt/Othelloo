@@ -22,11 +22,25 @@ class OthelloVM: ObservableObject {
         othello.possibleMovements
     }
     
+    var userScore: Int {
+        othello.userScore
+    }
+    
+    var cpuScore: Int {
+        othello.cpuScore
+    }
+    
+    var logs: [Log] {
+        othello.logs
+    }
+    
     func userTurn(movement: Movement) {
         othello.userTurn(movement: movement)
     }
     
     func cpuTurn() {
-        othello.cpuTurn()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .random(in: 1...2)) {
+            self.othello.cpuTurn()
+        }
     }
 }

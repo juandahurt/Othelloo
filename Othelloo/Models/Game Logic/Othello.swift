@@ -19,10 +19,20 @@ struct Othello: Game {
     /// Contains the cost of every postion on the board.
     var costTable: [[Int]] = []
     
+    /// Number of positions that the user posses
+    var userScore: Int = 2
+    
+    /// Number of positions that the machine posses
+    var cpuScore: Int = 2
+    
+    /// Game logs
+    var logs: [Log] = []
+    
     init() {
         initState()
         initCostTable()
         initPossibleMoves()
+        initLogs()
     }
     
     // MARK: - Initalizers
@@ -56,6 +66,11 @@ struct Othello: Game {
     
     mutating private func initPossibleMoves() {
         possibleMovements = movements(for: .user)
+    }
+    
+    mutating private func initLogs() {
+//        logs.append(Log(id: 0, message: "It's your turn."))
+//        logs.append(Log(id: 1, message: "Those little white circles represent the places where you can move."))
     }
     
     // MARK: - Game Implementation
@@ -119,6 +134,12 @@ struct Othello: Game {
         let excecutor = OthelloMovementExcecutor()
         self.state = excecutor.excecute(movement: movement, by: .user, in: self.state)
         possibleMovements.removeAll()
+        updateScores()
+        if logs.count == 5 {
+            logs.remove(at: 0)
+        }
+        logs.append(Log(id: 0, message: .random(type: .afterUserMovement)!))
+        updateLogsIds()
     }
     
     /// Excecutes a cpu movement using the alpha-beta algorithm
@@ -126,5 +147,30 @@ struct Othello: Game {
         let alphaBeta = AlphaBeta(game: self, depth: 0)
         self.state = alphaBeta.run(state: self.state)
         possibleMovements = movements(for: .user)
+        updateScores()
+        if logs.count == 5 {
+            logs.remove(at: 0)
+        }
+        logs.append(Log(id: 0, message: .random(type: .afterCpuMovement)!))
+        updateLogsIds()
+    }
+    
+    /// Updates the scores of the two players
+    mutating private func updateScores() {
+        userScore = 0
+        cpuScore = 0
+        for row in 0..<8 {
+            for col in 0..<8 {
+                let position = state[row][col]
+                if position.player == .user { userScore += 1 }
+                if position.player == .cpu { cpuScore += 1 }
+            }
+        }
+    }
+    
+    mutating private func updateLogsIds() {
+        for logIndex in logs.indices {
+            logs[logIndex].id = logIndex
+        }
     }
 }

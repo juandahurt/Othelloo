@@ -17,20 +17,39 @@ struct OthelloView: View {
             .ignoresSafeArea()
     }
     
+    func scores() -> some View {
+        let screenWidth = UIScreen.main.bounds.width
+        let cellWidth = (screenWidth - 50) / 8
+        return HStack(spacing: 100) {
+            VStack {
+                Circle()
+                    .fill(Color("White"))
+                    .frame(width: cellWidth * 0.8, height: cellWidth * 0.8)
+                Text("\(othelloVM.userScore)")
+            }
+            VStack {
+                Circle()
+                    .fill(Color("Black"))
+                    .frame(width: cellWidth * 0.8, height: cellWidth * 0.8)
+                Text("\(othelloVM.cpuScore)")
+            }
+        }
+        .foregroundColor(Color("White"))
+        .font(.system(size: 16, weight: .bold, design: .default))
+    }
+    
     var body: some View {
         ZStack {
             background
             VStack {
+                scores()
+                Spacer()
                 Board(state: othelloVM.currentState, possibleMovements: othelloVM.possibleMoves, possibleMovementOnTap: { movement in
-                    withAnimation(.spring()) {
-                        othelloVM.userTurn(movement: movement)
-                    }
-                    withAnimation(Animation.spring().delay(0.7)) {
-                        othelloVM.cpuTurn()
-                    }
+                    othelloVM.userTurn(movement: movement)
+                    othelloVM.cpuTurn()
                 })
                 Spacer()
-                Terminal()
+                Terminal(logs: othelloVM.logs)
             }
             .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)
             .aspectRatio(contentMode: .fit)
@@ -39,9 +58,3 @@ struct OthelloView: View {
     
     let backgroundColor = Color("Green")
 }
-
-//struct OthelloView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        OthelloView(
-//    }
-//}
