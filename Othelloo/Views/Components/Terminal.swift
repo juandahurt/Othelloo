@@ -28,7 +28,6 @@ struct Terminal: View {
         .foregroundColor(logsColor)
         .font(.system(size: 10, weight: .regular, design: .monospaced))
         .padding(10)
-        .clipped()
     }
     
     var terminalButton: some View {

@@ -24,10 +24,10 @@ struct Movement {
         case right
         case bottom
         case left
-        case upRight
-        case upLeft
+        case topRight
+        case topLeft
         case bottomRight
         case bottomLeft
-        static let directions: [Direction] = [top, right, bottom, left]
+        static let directions: [Direction] = [top, right, bottom, left, topLeft, topRight, bottomRight, bottomLeft]
     }
 }

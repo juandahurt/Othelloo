@@ -14,6 +14,7 @@ struct OthelloMovementChecker: MovementChecker {
     func checkIfPlayerCanMove(from position: Position, to direction: Movement.Direction, player: Player, state: State) -> Movement? {
         if let modifier = ValueModifier.chooseModifier(direction: direction) {
             var value: Int
+            var secondValue: Int?
             switch modifier.valueType {
             case .column:
                 value = position.col
@@ -21,13 +22,17 @@ struct OthelloMovementChecker: MovementChecker {
             case .row:
                 value = position.row
                 break
+            case .both:
+                value = position.row
+                secondValue = position.col
+                break
             }
-            modifier.modifier(&value)
+            modifier.modifier(&value,&secondValue)
             var foundOponent = false
             let oponent: Player
             if player == .cpu { oponent = .user }
             else { oponent = .cpu }
-            while !modifier.stopCondition(value) {
+            while !modifier.stopCondition(value,secondValue) {
                 let currentPos: Position
                 switch modifier.valueType {
                 case .column:
@@ -35,6 +40,9 @@ struct OthelloMovementChecker: MovementChecker {
                     break
                 case .row:
                     currentPos = state[value][position.col]
+                    break
+                case .both:
+                    currentPos = state[value][secondValue!]
                     break
                 }
                 let currentPlayer = currentPos.player
@@ -49,12 +57,14 @@ struct OthelloMovementChecker: MovementChecker {
                             to: currentPos,
                             direction: direction
                         )
+                    } else {
+                        return nil
                     }
                 }
                 if currentPlayer == player {
                     return nil
                 }
-                modifier.modifier(&value)
+                modifier.modifier(&value,&secondValue)
             }
         }
         return nil

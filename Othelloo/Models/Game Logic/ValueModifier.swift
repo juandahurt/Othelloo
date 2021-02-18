@@ -9,8 +9,8 @@ import Foundation
 
 struct ValueModifier {
     var valueType: ValueType
-    var modifier: (inout Int) -> Void
-    var stopCondition: (Int) -> Bool
+    var modifier: (inout Int, inout Int?) -> Void
+    var stopCondition: (Int, Int?) -> Bool
     
     /// Chooses the correct modifier
     /// - Parameter direction: movement direction
@@ -20,45 +20,82 @@ struct ValueModifier {
         case .top:
             return ValueModifier(
                 valueType: .row,
-                modifier: { value in
+                modifier: { value,_  in
                     value -= 1
                 },
-                stopCondition: { value in
+                stopCondition: { value,_ in
                     value == -1
                 }
             )
         case .right:
             return ValueModifier(
                 valueType: .column,
-                modifier: { value in
+                modifier: { value,_ in
                     value += 1
                 },
-                stopCondition: { value in
+                stopCondition: { value,_ in
                     value == 8
                 }
             )
         case .bottom:
             return ValueModifier(
                 valueType: .row,
-                modifier: { value in
+                modifier: { value,_ in
                     value += 1
                 },
-                stopCondition: { value in
+                stopCondition: { value,_ in
                     value == 8
                 }
             )
         case .left:
             return ValueModifier(
                 valueType: .column,
-                modifier: { value in
+                modifier: { value,_ in
                     value -= 1
                 },
-                stopCondition: { value in
+                stopCondition: { value,_ in
                     value == -1
-                }
-            )
-        default:
-            return nil
+                })
+        case .topLeft:
+            return ValueModifier(
+                valueType: .both,
+                modifier: { row,col in
+                    row -= 1
+                    col! -= 1
+                },
+                stopCondition: { row,col in
+                    row == -1 || col == -1
+                })
+        case .topRight:
+            return ValueModifier(
+                valueType: .both,
+                modifier: { row,col in
+                    row -= 1
+                    col! += 1
+                },
+                stopCondition: { row,col in
+                    row == -1 || col == 8
+                })
+        case .bottomRight:
+            return ValueModifier(
+                valueType: .both,
+                modifier: { row,col in
+                    row += 1
+                    col! += 1
+                },
+                stopCondition: { row,col in
+                    row == 8 || col == 8
+                })
+        case .bottomLeft:
+            return ValueModifier(
+                valueType: .both,
+                modifier: { row,col in
+                    row += 1
+                    col! -= 1
+                },
+                stopCondition: { row,col in
+                    row == 8 || col == -1
+                })
         }
     }
 }
@@ -66,4 +103,5 @@ struct ValueModifier {
 enum ValueType {
     case column
     case row
+    case both
 }

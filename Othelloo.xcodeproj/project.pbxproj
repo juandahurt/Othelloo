@@ -72,6 +72,7 @@
 		3D135D5625DEC9CB00FBC389 /* Game Logic */ = {
 			isa = PBXGroup;
 			children = (
+				3D51A0F225DF05EE008698EC /* Protocols */,
 				3D52B7AD25DD635B000539E4 /* ValueModifier.swift */,
 				3D52B7B825DD67F2000539E4 /* OthelloMovementExcecutor.swift */,
 				3D42C00A25DCAB3F00170A94 /* OthelloMovementChecker.swift */,
@@ -134,12 +135,9 @@
 			isa = PBXGroup;
 			children = (
 				3D135D5625DEC9CB00FBC389 /* Game Logic */,
-				3DC0240C25DC5239007B6E73 /* Game.swift */,
 				3DC0240F25DC52B2007B6E73 /* Movement.swift */,
 				3DC0241225DC52BA007B6E73 /* Position.swift */,
 				3DC0241525DC5309007B6E73 /* Player.swift */,
-				3D42C00D25DCAC9D00170A94 /* MovementChecker.swift */,
-				3D52B7B025DD64B9000539E4 /* MovementExcecutor.swift */,
 				3D376BED25DDACDC004F4AF3 /* Log.swift */,
 				3D135D5725DECA4900FBC389 /* LogMessage.swift */,
 			);
@@ -161,6 +159,16 @@
 				3D4E2BC825DC1F010064801A /* OthelloView.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		3D51A0F225DF05EE008698EC /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3DC0240C25DC5239007B6E73 /* Game.swift */,
+				3D42C00D25DCAC9D00170A94 /* MovementChecker.swift */,
+				3D52B7B025DD64B9000539E4 /* MovementExcecutor.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		3DC0241B25DC6884007B6E73 /* Extensions */ = {

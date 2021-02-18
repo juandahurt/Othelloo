@@ -15,6 +15,8 @@ struct OthelloMovementExcecutor: MovementExcecutor {
         if let modifier = ValueModifier.chooseModifier(direction: movement.direction) {
             var value: Int
             let limit: Int
+            var secondValue: Int?
+            var secondLimit: Int?
             switch modifier.valueType {
             case .column:
                 value = movement.from.col
@@ -24,11 +26,17 @@ struct OthelloMovementExcecutor: MovementExcecutor {
                 value = movement.from.row
                 limit = movement.to.row
                 break
+            case .both:
+                value = movement.from.row
+                limit = movement.to.row
+                secondValue = movement.from.col
+                secondLimit = movement.to.col
+                break
             }
-            modifier.modifier(&value)
+            modifier.modifier(&value, &secondValue)
             var stateCopy = state
             var lastSpaceWasModified = false
-            while !modifier.stopCondition(value) && !lastSpaceWasModified {
+            while !modifier.stopCondition(value, secondValue) && !lastSpaceWasModified {
                 switch modifier.valueType {
                 case .column:
                     stateCopy[movement.from.row][value].player = player
@@ -36,11 +44,13 @@ struct OthelloMovementExcecutor: MovementExcecutor {
                 case .row:
                     stateCopy[value][movement.from.col].player = player
                     break
+                case .both:
+                    stateCopy[value][secondValue!].player = player
                 }
-                if limit == value {
+                if limit == value && secondLimit == secondValue {
                     lastSpaceWasModified = true
                 }
-                modifier.modifier(&value)
+                modifier.modifier(&value, &secondValue)
             }
             return stateCopy
         } else {
