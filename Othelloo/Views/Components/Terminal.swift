@@ -28,45 +28,53 @@ struct Terminal: View {
         .foregroundColor(logsColor)
         .font(.system(size: 10, weight: .regular, design: .monospaced))
         .padding(10)
+        .clipped()
+    }
+    
+    var terminalButton: some View {
+        Image("Left-Arrow")
+            .rotationEffect(.degrees(!isPresented ? 180 : 0))
+            .onTapGesture {
+                withAnimation(Animation.spring()) {
+                    isPresented.toggle()
+            }
+        }
     }
     
     @ViewBuilder var body: some View {
         if isPresented {
             ZStack {
-                RoundedRectangle(cornerRadius: 5)
-                    .fill(backgroundColor)
-                    .frame(width: UIScreen.main.bounds.width - 30, height: 135)
-                    .matchedGeometryEffect(id: "terminal", in: animation)
-                logsContainer
-                    .frame(width: UIScreen.main.bounds.width - 30, height: 135)
-            }
-            .onTapGesture {
-                withAnimation(.spring()) {
-                    isPresented.toggle()
-                }
-            }
-        } else {
-            ZStack {
-                VStack {
-                    Spacer()
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(backgroundColor)
+                    logsContainer
                     HStack {
-                        Spacer()
-                        Rectangle()
-                            .fill(backgroundColor)
-                            .matchedGeometryEffect(id: "terminal", in: animation)
-                            .frame(width: 40, height: 40)
-                            .onTapGesture {
-                                withAnimation(.spring()) {
-                                    isPresented.toggle()
-                                }
-                            }
-                    }
+                        Spacer(minLength: 0)
+                        terminalButton
+                    }.padding(.trailing, 5)
                 }
             }
-            .frame(width: UIScreen.main.bounds.width - 30, height: 135)
+            .matchedGeometryEffect(id: "terminal", in: animation)
+            .frame(width: presentedWidth, height: 135)
+        } else {
+            HStack {
+                Spacer()
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(backgroundColor)
+                    HStack {
+                        Spacer(minLength: 0)
+                        terminalButton
+                    }.padding(.trailing, 5)
+                }.frame(width: hiddenWidth, height: 135)
+                .matchedGeometryEffect(id: "terminal", in: animation)
+            }
+            .frame(maxWidth: presentedWidth)
         }
     }
     
+    let presentedWidth: CGFloat = UIScreen.main.bounds.width - 30
+    let hiddenWidth: CGFloat = 40
     let backgroundColor = Color("Black")
     let logsColor = Color("White")
 }
