@@ -11,8 +11,8 @@ struct Log: Identifiable {
     var id: Int
     var message: String
     
-    init(id: Int, message: LogMessage) {
+    init(id: Int, message: String, isFromTheMachine: Bool = true) {
         self.id = id
-        self.message = "machine: " + message.text
+        self.message = (isFromTheMachine ? "machine: " : "server: ") + message
     }
 }

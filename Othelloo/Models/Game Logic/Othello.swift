@@ -69,8 +69,8 @@ struct Othello: Game {
     }
     
     mutating private func initLogs() {
-//        logs.append(Log(id: 0, message: "It's your turn."))
-//        logs.append(Log(id: 1, message: "Those little white circles represent the places where you can move."))
+        logs.append(Log(id: 0, message: "Welcome.", isFromTheMachine: false))
+        logs.append(Log(id: 1, message: "Those little white circles represent the places where you can move.", isFromTheMachine: false))
     }
     
     // MARK: - Game Implementation
@@ -135,11 +135,12 @@ struct Othello: Game {
         self.state = excecutor.excecute(movement: movement, by: .user, in: self.state)
         possibleMovements.removeAll()
         updateScores()
-        if logs.count == 5 {
-            logs.remove(at: 0)
+        if logs.count > 3 {
+            logs.removeSubrange(0...1)
         }
-        logs.append(Log(id: 0, message: .random(type: .afterUserMovement)!))
         updateLogsIds()
+        logs.append(Log(id: logs.count, message: "Waiting for machine to move...", isFromTheMachine: false))
+        logs.append(Log(id: logs.count, message: LogMessage.random(type: .afterUserMovement).text))
     }
     
     /// Excecutes a cpu movement using the alpha-beta algorithm
@@ -148,11 +149,12 @@ struct Othello: Game {
         self.state = alphaBeta.run(state: self.state)
         possibleMovements = movements(for: .user)
         updateScores()
-        if logs.count == 5 {
-            logs.remove(at: 0)
+        if logs.count > 3 {
+            logs.removeSubrange(0...1)
         }
-        logs.append(Log(id: 0, message: .random(type: .afterCpuMovement)!))
         updateLogsIds()
+        logs.append(Log(id: logs.count, message: "Waiting for user to move...", isFromTheMachine: false))
+        logs.append(Log(id: logs.count, message: LogMessage.random(type: .afterCpuMovement).text))
     }
     
     /// Updates the scores of the two players

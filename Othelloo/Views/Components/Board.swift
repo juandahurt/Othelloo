@@ -57,7 +57,7 @@ struct Board: View {
                         }
                     }
                 }
-            }
+            }.cornerRadius(5)
         }
     }
     
