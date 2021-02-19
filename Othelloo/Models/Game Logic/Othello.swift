@@ -141,7 +141,12 @@ struct Othello: Game {
     /// - Parameter movement: movement to be excecuted
     mutating func userTurn(movement: Movement) {
         let excecutor = OthelloMovementExcecutor()
-        self.state = excecutor.excecute(movement: movement, by: .user, in: self.state)
+        let movementsToBeExcecuted = possibleMovements.filter({ $0.to == movement.to })
+        var movementIndex = 0
+        while movementIndex < movementsToBeExcecuted.count {
+            self.state = excecutor.excecute(movement: movementsToBeExcecuted[movementIndex], by: .user, in: self.state)
+            movementIndex += 1
+        }
         updateScores()
         isOver = isTerminal(state: state)
         if isOver { return }

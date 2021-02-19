@@ -61,6 +61,7 @@ struct GameOver: View {
                     .multilineTextAlignment(.center)
                 Text(getCorrectText())
                     .font(.system(size: 16, weight: .regular, design: .monospaced))
+                    .padding(.bottom, 5)
             }
                 .foregroundColor(Color("White"))
             newGameButton
