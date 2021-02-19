@@ -27,10 +27,11 @@ struct Board: View {
                     Circle()
                         .fill(player == .user ? userColor : cpuColor)
                         .frame(width: cellWidth * 0.8, height: cellWidth * 0.8)
+                        .animation(.spring())
                 } else {
                     Circle()
                         .fill(possibleMovement != nil ? possibleMovementsColor : Color.clear)
-                        .frame(width: cellWidth * 0.12, height: cellWidth * 0.12)
+                        .frame(width: cellWidth * 0.15, height: cellWidth * 0.15)
                 }
             }
         }.onTapGesture {
@@ -62,9 +63,9 @@ struct Board: View {
     }
     
     // MARK: - UI Constants
-    let possibleMovementsColor = Color("White").opacity(0.7)
-    let userColor = Color("White")
-    let cpuColor = Color("Black")
+    let possibleMovementsColor = Color("Black").opacity(0.3)
+    let userColor = Color("Black")
+    let cpuColor = Color("White")
     let greenLightColor = Color("Green-Light")
     let brownColor = Color("Brown")
     let brownLightColor = Color("Brown-Light")

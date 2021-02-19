@@ -23,13 +23,13 @@ struct OthelloView: View {
         return HStack(spacing: 100) {
             VStack {
                 Circle()
-                    .fill(Color("White"))
+                    .fill(Color("Black"))
                     .frame(width: cellWidth * 0.8, height: cellWidth * 0.8)
                 Text("\(othelloVM.userScore)")
             }
             VStack {
                 Circle()
-                    .fill(Color("Black"))
+                    .fill(Color("White"))
                     .frame(width: cellWidth * 0.8, height: cellWidth * 0.8)
                 Text("\(othelloVM.cpuScore)")
             }
@@ -44,7 +44,7 @@ struct OthelloView: View {
             VStack {
                 scores()
                 Spacer()
-                Board(state: othelloVM.currentState, possibleMovements: othelloVM.possibleMoves, possibleMovementOnTap: { movement in
+                Board(state: othelloVM.currentState, possibleMovements: othelloVM.possibleMovements, possibleMovementOnTap: { movement in
                     othelloVM.userTurn(movement: movement)
                     othelloVM.cpuTurn()
                 })
@@ -53,6 +53,22 @@ struct OthelloView: View {
             }
             .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)
             .aspectRatio(contentMode: .fit)
+            Group {
+                if othelloVM.isOver {
+                    GameOver(userScore: othelloVM.userScore, cpuScore: othelloVM.cpuScore) {
+                        othelloVM.restart()
+                    }
+                    .animation(.linear)
+                    .transition(.slide)
+                }
+                if othelloVM.userMustPassTheTurn {
+                    NoMovements {
+                        othelloVM.passTurnToCpu()
+                    }
+                    .animation(.linear)
+                    .transition(.slide)
+                }
+            }
         }
     }
     

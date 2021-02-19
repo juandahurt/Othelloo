@@ -18,7 +18,7 @@ class OthelloVM: ObservableObject {
         othello.state
     }
     
-    var possibleMoves: [Movement] {
+    var possibleMovements: [Movement] {
         othello.possibleMovements
     }
     
@@ -34,6 +34,14 @@ class OthelloVM: ObservableObject {
         othello.logs
     }
     
+    var isOver: Bool {
+        othello.isOver
+    }
+    
+    var userMustPassTheTurn: Bool {
+        othello.userMustPassTheTurn
+    }
+    
     func userTurn(movement: Movement) {
         othello.userTurn(movement: movement)
     }
@@ -42,5 +50,16 @@ class OthelloVM: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + .random(in: 1...2)) {
             self.othello.cpuTurn()
         }
+    }
+    
+    func passTurnToCpu() {
+        othello.passTurnToCpu()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .random(in: 1...2)) {
+            self.othello.cpuTurn()
+        }
+    }
+    
+    func restart() {
+        othello.restart()
     }
 }

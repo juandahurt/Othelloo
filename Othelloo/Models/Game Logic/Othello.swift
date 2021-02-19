@@ -28,6 +28,12 @@ struct Othello: Game {
     /// Game logs
     var logs: [Log] = []
     
+    /// Is the game over?
+    var isOver: Bool = false
+    
+    /// user must pass the turn?
+    var userMustPassTheTurn: Bool = false
+    
     init() {
         initState()
         initCostTable()
@@ -45,10 +51,10 @@ struct Othello: Game {
             }
             state.append(stateRow)
         }
-        state[3][3].player = .user
-        state[3][4].player = .cpu
-        state[4][3].player = .cpu
-        state[4][4].player = .user
+        state[3][3].player = .cpu
+        state[3][4].player = .user
+        state[4][3].player = .user
+        state[4][4].player = .cpu
     }
     
     mutating private func initCostTable() {
@@ -70,7 +76,8 @@ struct Othello: Game {
     
     mutating private func initLogs() {
         logs.append(Log(id: 0, message: "Welcome.", isFromTheMachine: false))
-        logs.append(Log(id: 1, message: "Those little white circles represent the places where you can move.", isFromTheMachine: false))
+        logs.append(Log(id: 1, message: "Those little circles represent the places where you can move.", isFromTheMachine: false))
+        logs.append(Log(id: 2, message: "Waiting for user to move...", isFromTheMachine: false))
     }
     
     // MARK: - Game Implementation
@@ -103,7 +110,9 @@ struct Othello: Game {
     }
     
     func isTerminal(state: State) -> Bool {
-        false
+        let cpuMovements = movements(for: .cpu)
+        let userMovements = movements(for: .user)
+        return cpuMovements.isEmpty && userMovements.isEmpty
     }
     
     /// Returns all the allowable movements for the user.
@@ -133,13 +142,15 @@ struct Othello: Game {
     mutating func userTurn(movement: Movement) {
         let excecutor = OthelloMovementExcecutor()
         self.state = excecutor.excecute(movement: movement, by: .user, in: self.state)
-        possibleMovements.removeAll()
         updateScores()
+        isOver = isTerminal(state: state)
+        if isOver { return }
         if logs.count > 3 {
             logs.removeSubrange(0...1)
         }
         updateLogsIds()
         logs.append(Log(id: logs.count, message: "Waiting for machine to move...", isFromTheMachine: false))
+        possibleMovements.removeAll()
         logs.append(Log(id: logs.count, message: LogMessage.random(type: .afterUserMovement).text))
     }
     
@@ -147,14 +158,17 @@ struct Othello: Game {
     mutating func cpuTurn() {
         let alphaBeta = AlphaBeta(game: self, depth: 0)
         self.state = alphaBeta.run(state: self.state)
+        isOver = isTerminal(state: state)
+        if isOver { return }
         possibleMovements = movements(for: .user)
+        userMustPassTheTurn = possibleMovements.isEmpty
         updateScores()
         if logs.count > 3 {
             logs.removeSubrange(0...1)
         }
         updateLogsIds()
-        logs.append(Log(id: logs.count, message: "Waiting for user to move...", isFromTheMachine: false))
         logs.append(Log(id: logs.count, message: LogMessage.random(type: .afterCpuMovement).text))
+        logs.append(Log(id: logs.count, message: "Waiting for user to move...", isFromTheMachine: false))
     }
     
     /// Updates the scores of the two players
@@ -174,5 +188,13 @@ struct Othello: Game {
         for logIndex in logs.indices {
             logs[logIndex].id = logIndex
         }
+    }
+    
+    mutating func passTurnToCpu() {
+        userMustPassTheTurn = false
+    }
+    
+    mutating func restart() {
+        self = .init()
     }
 }

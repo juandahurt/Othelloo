@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D0263C125DF43EE00E47DA3 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0263C025DF43EE00E47DA3 /* GameOver.swift */; };
+		3D0263C425E00F1F00E47DA3 /* NoMovements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0263C325E00F1F00E47DA3 /* NoMovements.swift */; };
 		3D135D5825DECA4900FBC389 /* LogMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D135D5725DECA4900FBC389 /* LogMessage.swift */; };
 		3D376BEE25DDACDC004F4AF3 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D376BED25DDACDC004F4AF3 /* Log.swift */; };
 		3D42C00B25DCAB3F00170A94 /* OthelloMovementChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42C00A25DCAB3F00170A94 /* OthelloMovementChecker.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D0263C025DF43EE00E47DA3 /* GameOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
+		3D0263C325E00F1F00E47DA3 /* NoMovements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMovements.swift; sourceTree = "<group>"; };
 		3D135D5725DECA4900FBC389 /* LogMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMessage.swift; sourceTree = "<group>"; };
 		3D376BED25DDACDC004F4AF3 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		3D42C00A25DCAB3F00170A94 /* OthelloMovementChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthelloMovementChecker.swift; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 			children = (
 				3D4E2BC525DC18860064801A /* Board.swift */,
 				3D4E2BCB25DC1FD60064801A /* Terminal.swift */,
+				3D0263C025DF43EE00E47DA3 /* GameOver.swift */,
+				3D0263C325E00F1F00E47DA3 /* NoMovements.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -265,6 +271,8 @@
 				3D4E2BC925DC1F010064801A /* OthelloView.swift in Sources */,
 				3DC0241925DC5734007B6E73 /* AlphaBeta.swift in Sources */,
 				3DE360C025DC775800699236 /* OthelloVM.swift in Sources */,
+				3D0263C425E00F1F00E47DA3 /* NoMovements.swift in Sources */,
+				3D0263C125DF43EE00E47DA3 /* GameOver.swift in Sources */,
 				3D42C00E25DCAC9D00170A94 /* MovementChecker.swift in Sources */,
 				3D52B7AE25DD635B000539E4 /* ValueModifier.swift in Sources */,
 				3D4E2BC625DC18860064801A /* Board.swift in Sources */,
