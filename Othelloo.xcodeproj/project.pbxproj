@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,7 @@
 		3D52B7AE25DD635B000539E4 /* ValueModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D52B7AD25DD635B000539E4 /* ValueModifier.swift */; };
 		3D52B7B125DD64B9000539E4 /* MovementExcecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D52B7B025DD64B9000539E4 /* MovementExcecutor.swift */; };
 		3D52B7B925DD67F2000539E4 /* OthelloMovementExcecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D52B7B825DD67F2000539E4 /* OthelloMovementExcecutor.swift */; };
+		3DBF894C25E0425A00702731 /* IntersitialAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBF894B25E0425A00702731 /* IntersitialAd.swift */; };
 		3DC0240A25DC5229007B6E73 /* Othello.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0240925DC5229007B6E73 /* Othello.swift */; };
 		3DC0240D25DC5239007B6E73 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0240C25DC5239007B6E73 /* Game.swift */; };
 		3DC0241025DC52B2007B6E73 /* Movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0240F25DC52B2007B6E73 /* Movement.swift */; };
@@ -31,6 +32,7 @@
 		3DC0241925DC5734007B6E73 /* AlphaBeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0241825DC5734007B6E73 /* AlphaBeta.swift */; };
 		3DC0241D25DC6892007B6E73 /* Int+Infinity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0241C25DC6892007B6E73 /* Int+Infinity.swift */; };
 		3DE360C025DC775800699236 /* OthelloVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE360BF25DC775800699236 /* OthelloVM.swift */; };
+		887761794D795C45EE655853 /* Pods_Othelloo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFCD261A162145A964DD0E1 /* Pods_Othelloo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,7 @@
 		3D52B7AD25DD635B000539E4 /* ValueModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueModifier.swift; sourceTree = "<group>"; };
 		3D52B7B025DD64B9000539E4 /* MovementExcecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementExcecutor.swift; sourceTree = "<group>"; };
 		3D52B7B825DD67F2000539E4 /* OthelloMovementExcecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthelloMovementExcecutor.swift; sourceTree = "<group>"; };
+		3DBF894B25E0425A00702731 /* IntersitialAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntersitialAd.swift; sourceTree = "<group>"; };
 		3DC0240925DC5229007B6E73 /* Othello.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Othello.swift; sourceTree = "<group>"; };
 		3DC0240C25DC5239007B6E73 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		3DC0240F25DC52B2007B6E73 /* Movement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movement.swift; sourceTree = "<group>"; };
@@ -60,6 +63,9 @@
 		3DC0241825DC5734007B6E73 /* AlphaBeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaBeta.swift; sourceTree = "<group>"; };
 		3DC0241C25DC6892007B6E73 /* Int+Infinity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Infinity.swift"; sourceTree = "<group>"; };
 		3DE360BF25DC775800699236 /* OthelloVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthelloVM.swift; sourceTree = "<group>"; };
+		A1E4A4BC298DF9E43A916A77 /* Pods-Othelloo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Othelloo.debug.xcconfig"; path = "Target Support Files/Pods-Othelloo/Pods-Othelloo.debug.xcconfig"; sourceTree = "<group>"; };
+		D5CD080ECF70B7AAA3A83DD9 /* Pods-Othelloo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Othelloo.release.xcconfig"; path = "Target Support Files/Pods-Othelloo/Pods-Othelloo.release.xcconfig"; sourceTree = "<group>"; };
+		EFFCD261A162145A964DD0E1 /* Pods_Othelloo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Othelloo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,12 +73,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				887761794D795C45EE655853 /* Pods_Othelloo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C1E201E545C6B3E551D8BAF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A1E4A4BC298DF9E43A916A77 /* Pods-Othelloo.debug.xcconfig */,
+				D5CD080ECF70B7AAA3A83DD9 /* Pods-Othelloo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		3189084F4CC14D7F198C51F6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EFFCD261A162145A964DD0E1 /* Pods_Othelloo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3D135D5625DEC9CB00FBC389 /* Game Logic */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +115,8 @@
 			children = (
 				3D4E2BB025DC18400064801A /* Othelloo */,
 				3D4E2BAF25DC18400064801A /* Products */,
+				1C1E201E545C6B3E551D8BAF /* Pods */,
+				3189084F4CC14D7F198C51F6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				3D4E2BC825DC1F010064801A /* OthelloView.swift */,
+				3DBF894B25E0425A00702731 /* IntersitialAd.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -200,9 +227,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D4E2BBD25DC18430064801A /* Build configuration list for PBXNativeTarget "Othelloo" */;
 			buildPhases = (
+				812D6B448863CDA16A035EC4 /* [CP] Check Pods Manifest.lock */,
 				3D4E2BAA25DC18400064801A /* Sources */,
 				3D4E2BAB25DC18400064801A /* Frameworks */,
 				3D4E2BAC25DC18400064801A /* Resources */,
+				BE4A7FD17FA7205A945C3C8E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -257,6 +286,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		812D6B448863CDA16A035EC4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Othelloo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BE4A7FD17FA7205A945C3C8E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Othelloo/Pods-Othelloo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Othelloo/Pods-Othelloo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Othelloo/Pods-Othelloo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3D4E2BAA25DC18400064801A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -275,6 +346,7 @@
 				3D0263C125DF43EE00E47DA3 /* GameOver.swift in Sources */,
 				3D42C00E25DCAC9D00170A94 /* MovementChecker.swift in Sources */,
 				3D52B7AE25DD635B000539E4 /* ValueModifier.swift in Sources */,
+				3DBF894C25E0425A00702731 /* IntersitialAd.swift in Sources */,
 				3D4E2BC625DC18860064801A /* Board.swift in Sources */,
 				3D42C00B25DCAB3F00170A94 /* OthelloMovementChecker.swift in Sources */,
 				3DC0241D25DC6892007B6E73 /* Int+Infinity.swift in Sources */,
@@ -341,7 +413,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -396,7 +468,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -408,6 +480,7 @@
 		};
 		3D4E2BBE25DC18430064801A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1E4A4BC298DF9E43A916A77 /* Pods-Othelloo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -430,6 +503,7 @@
 		};
 		3D4E2BBF25DC18430064801A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5CD080ECF70B7AAA3A83DD9 /* Pods-Othelloo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

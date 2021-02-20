@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OthelloView: View {
     @StateObject var othelloVM: OthelloVM
+    var intersitial = Interstitial()
     
     var background: some View {
         Rectangle()
@@ -57,6 +58,7 @@ struct OthelloView: View {
                 if othelloVM.isOver {
                     GameOver(userScore: othelloVM.userScore, cpuScore: othelloVM.cpuScore) {
                         othelloVM.restart()
+                        intersitial.showAd()
                     }
                     .animation(.linear)
                     .transition(.slide)
