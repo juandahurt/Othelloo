@@ -50,45 +50,47 @@ struct OthelloView: View {
     }
     
     var body: some View {
-        ZStack {
-            background
-            VStack {
-                HStack {
-                    scores()
-                    Spacer(minLength: 15)
-                    ActionsContainer(newGameOnTap: {
-                        othelloVM.restart()
-                        intersitial.showAd()
+        NavigationView {
+            ZStack {
+                background
+                VStack {
+                    HStack {
+                        scores()
+                        Spacer(minLength: 15)
+                        ActionsContainer(newGameOnTap: {
+                            othelloVM.restart()
+                            intersitial.showAd()
+                        })
+                    }
+                        .padding(.horizontal, 15)
+                    Spacer()
+                    Board(state: othelloVM.currentState, possibleMovements: othelloVM.possibleMovements, possibleMovementOnTap: { movement in
+                        othelloVM.userTurn(movement: movement)
+                        othelloVM.cpuTurn()
                     })
+                    Spacer()
+                    Terminal(logs: othelloVM.logs)
                 }
-                    .padding(.horizontal, 15)
-                Spacer()
-                Board(state: othelloVM.currentState, possibleMovements: othelloVM.possibleMovements, possibleMovementOnTap: { movement in
-                    othelloVM.userTurn(movement: movement)
-                    othelloVM.cpuTurn()
-                })
-                Spacer()
-                Terminal(logs: othelloVM.logs)
-            }
-            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)
-            .aspectRatio(contentMode: .fit)
-            Group {
-                if othelloVM.isOver {
-                    GameOver(userScore: othelloVM.userScore, cpuScore: othelloVM.cpuScore) {
-                        othelloVM.restart()
-                        intersitial.showAd()
+                .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)
+                .aspectRatio(contentMode: .fit)
+                Group {
+                    if othelloVM.isOver {
+                        GameOver(userScore: othelloVM.userScore, cpuScore: othelloVM.cpuScore) {
+                            othelloVM.restart()
+                            intersitial.showAd()
+                        }
+                        .animation(.linear)
+                        .transition(.slide)
                     }
-                    .animation(.linear)
-                    .transition(.slide)
-                }
-                if othelloVM.userMustPassTheTurn {
-                    NoMovements {
-                        othelloVM.passTurnToCpu()
+                    if othelloVM.userMustPassTheTurn {
+                        NoMovements {
+                            othelloVM.passTurnToCpu()
+                        }
+                        .animation(.linear)
+                        .transition(.slide)
                     }
-                    .animation(.linear)
-                    .transition(.slide)
                 }
-            }
+            }.navigationBarHidden(true)
         }
     }
     

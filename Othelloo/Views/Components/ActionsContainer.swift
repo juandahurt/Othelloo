@@ -43,9 +43,11 @@ struct ActionsContainer: View {
                         newGameOnTap()
                     }
                     Spacer()
-                    VStack {
-                        Image("Settings")
-                        Text("Settings")
+                    NavigationLink(destination: SettingsView()) {
+                        VStack {
+                            Image("Settings")
+                            Text("Settings")
+                        }
                     }
                     Spacer()
                 }
