@@ -21,18 +21,28 @@ struct OthelloView: View {
     func scores() -> some View {
         let screenWidth = UIScreen.main.bounds.width
         let cellWidth = (screenWidth - 50) / 8
-        return HStack(spacing: 100) {
-            VStack {
-                Circle()
-                    .fill(Color("Black"))
-                    .frame(width: cellWidth * 0.8, height: cellWidth * 0.8)
-                Text("\(othelloVM.userScore)")
-            }
-            VStack {
-                Circle()
-                    .fill(Color("White"))
-                    .frame(width: cellWidth * 0.8, height: cellWidth * 0.8)
-                Text("\(othelloVM.cpuScore)")
+        return ZStack {
+            RoundedRectangle(cornerRadius: 5)
+                .fill(Color("Green-Light"))
+            RoundedRectangle(cornerRadius: 5)
+                .fill(Color("Green"))
+                .padding(5)
+            HStack {
+                Spacer()
+                VStack {
+                    Circle()
+                        .fill(Color("Black"))
+                        .frame(width: cellWidth * 0.8, height: cellWidth * 0.8)
+                    Text("\(othelloVM.userScore)")
+                }
+                Spacer()
+                VStack {
+                    Circle()
+                        .fill(Color("White"))
+                        .frame(width: cellWidth * 0.8, height: cellWidth * 0.8)
+                    Text("\(othelloVM.cpuScore)")
+                }
+                Spacer()
             }
         }
         .foregroundColor(Color("White"))
@@ -43,7 +53,15 @@ struct OthelloView: View {
         ZStack {
             background
             VStack {
-                scores()
+                HStack {
+                    scores()
+                    Spacer(minLength: 15)
+                    ActionsContainer(newGameOnTap: {
+                        othelloVM.restart()
+                        intersitial.showAd()
+                    })
+                }
+                    .padding(.horizontal, 15)
                 Spacer()
                 Board(state: othelloVM.currentState, possibleMovements: othelloVM.possibleMovements, possibleMovementOnTap: { movement in
                     othelloVM.userTurn(movement: movement)

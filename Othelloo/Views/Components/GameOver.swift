@@ -10,7 +10,7 @@ import SwiftUI
 struct GameOver: View {
     var userScore: Int
     var cpuScore: Int
-    var newGameOnTap: () -> Void
+    var onTap: () -> Void
     
     func getCorrectTitle() -> String {
         if userScore > cpuScore {
@@ -19,30 +19,6 @@ struct GameOver: View {
             return "It's a draw!"
         } else {
             return "I'm sorry."
-        }
-    }
-    
-    func getCorrectText() -> String {
-        if userScore > cpuScore {
-            return "You've won."
-        } else if userScore == cpuScore {
-            return "I was not expecting that..."
-        } else {
-            return "You've lost."
-        }
-    }
-    
-    var newGameButton: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 5)
-                .fill(Color("Green"))
-            Text("New game")
-                .font(.system(size: 16, weight: .bold, design: .monospaced))
-                .foregroundColor(Color("White"))
-        }
-        .frame(width: 100, height: 40)
-        .onTapGesture {
-            newGameOnTap()
         }
     }
     
@@ -59,14 +35,14 @@ struct GameOver: View {
                 Text(getCorrectTitle())
                     .font(.system(size: 25, weight: .bold, design: .monospaced))
                     .multilineTextAlignment(.center)
-                Text(getCorrectText())
+                Text("Tap here to dismiss this message.")
                     .font(.system(size: 16, weight: .regular, design: .monospaced))
-                    .padding(.bottom, 5)
             }
                 .foregroundColor(Color("White"))
-            newGameButton
-                .offset(x: 0, y: 60)
         }
         .frame(width: UIScreen.main.bounds.width - 30, height: 120)
+        .onTapGesture {
+            onTap()
+        }
     }
 }

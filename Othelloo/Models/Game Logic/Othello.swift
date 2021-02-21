@@ -164,10 +164,10 @@ struct Othello: Game {
         let alphaBeta = AlphaBeta(game: self, depth: 0)
         self.state = alphaBeta.run(state: self.state)
         isOver = isTerminal(state: state)
+        updateScores()
         if isOver { return }
         possibleMovements = movements(for: .user)
         userMustPassTheTurn = possibleMovements.isEmpty
-        updateScores()
         if logs.count > 3 {
             logs.removeSubrange(0...1)
         }

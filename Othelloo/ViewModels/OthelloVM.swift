@@ -47,14 +47,14 @@ class OthelloVM: ObservableObject {
     }
     
     func cpuTurn() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .random(in: 1...2)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .random(in: 0.5...1)) {
             self.othello.cpuTurn()
         }
     }
     
     func passTurnToCpu() {
         othello.passTurnToCpu()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .random(in: 1...2)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .random(in: 0.5...1)) {
             self.othello.cpuTurn()
         }
     }
