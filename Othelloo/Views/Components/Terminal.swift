@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Terminal: View {
-    var logs: [Log]
+    var log: Log
     @State private var isPresented = true
     @Namespace private var animation
     
@@ -17,9 +17,9 @@ struct Terminal: View {
             Text("Terminal")
                 .font(.system(size: 10, weight: .bold, design: .monospaced))
                 .padding(.bottom, 5)
-            ForEach(logs) { log in
+            ForEach(log.logs, id: \.self) { text in
                 HStack {
-                    Text(log.message)
+                    Text(text)
                     Spacer(minLength: 0)
                 }
             }

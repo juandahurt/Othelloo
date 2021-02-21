@@ -25,8 +25,8 @@ struct Othello: Game {
     /// Number of positions that the machine posses
     var cpuScore: Int = 2
     
-    /// Game logs
-    var logs: [Log] = []
+    /// Game log
+    var log = Log()
     
     /// Is the game over?
     var isOver: Bool = false
@@ -38,7 +38,6 @@ struct Othello: Game {
         initState()
         initCostTable()
         initPossibleMoves()
-        initLogs()
     }
     
     // MARK: - Initalizers
@@ -71,18 +70,12 @@ struct Othello: Game {
     }
     
     mutating private func initPossibleMoves() {
-        possibleMovements = movements(for: .user)
-    }
-    
-    mutating private func initLogs() {
-        logs.append(Log(id: 0, message: "Welcome.", isFromTheMachine: false))
-        logs.append(Log(id: 1, message: "Those little circles represent the places where you can move.", isFromTheMachine: false))
-        logs.append(Log(id: 2, message: "Waiting for user to move...", isFromTheMachine: false))
+        possibleMovements = findMovements(for: .user)
     }
     
     // MARK: - Game Implementation
     func actions(for player: Player, at state: State) -> [State] {
-        let movements = self.movements(for: player)
+        let movements = self.findMovements(for: player)
         var actions = [State]()
         let excecutor = OthelloMovementExcecutor()
         for movement in movements {
@@ -110,31 +103,14 @@ struct Othello: Game {
     }
     
     func isTerminal(state: State) -> Bool {
-        let cpuMovements = movements(for: .cpu)
-        let userMovements = movements(for: .user)
+        let cpuMovements = findMovements(for: .cpu)
+        let userMovements = findMovements(for: .user)
         return cpuMovements.isEmpty && userMovements.isEmpty
     }
     
     /// Returns all the allowable movements for the user.
-    func movements(for player: Player) -> [Movement] {
-        // find the user positions
-        var userPositions: [Position] = []
-        var movements: [Movement] = []
-        for row in 0..<8 {
-            for col in 0..<8 {
-                let position = state[row][col]
-                if position.player == player { userPositions.append(position) }
-            }
-        }
-        let movesChecker = OthelloMovementChecker()
-        for position in userPositions {
-            for direction in Movement.Direction.directions {
-                if let movement = movesChecker.checkIfPlayerCanMove(from: position, to: direction, player: player, state: state) {
-                    movements.append(movement)
-                }
-            }
-        }
-        return movements
+    func findMovements(for player: Player) -> [Movement] {
+        OthelloMovementsFinder.findMovements(for: player, directions: Movement.Direction.directions, in: state)
     }
     
     /// Excecutes an user movement that modifes the current state
@@ -150,13 +126,9 @@ struct Othello: Game {
         updateScores()
         isOver = isTerminal(state: state)
         if isOver { return }
-        if logs.count > 3 {
-            logs.removeSubrange(0...1)
-        }
-        updateLogsIds()
-        logs.append(Log(id: logs.count, message: "Waiting for machine to move...", isFromTheMachine: false))
+        log.add("Waiting for machine to move...", isFromTheMachine: false)
+        log.add(LogMessage.random(type: .afterUserMovement).text)
         possibleMovements.removeAll()
-        logs.append(Log(id: logs.count, message: LogMessage.random(type: .afterUserMovement).text))
     }
     
     /// Excecutes a cpu movement using the alpha-beta algorithm
@@ -166,14 +138,10 @@ struct Othello: Game {
         isOver = isTerminal(state: state)
         updateScores()
         if isOver { return }
-        possibleMovements = movements(for: .user)
+        possibleMovements = findMovements(for: .user)
         userMustPassTheTurn = possibleMovements.isEmpty
-        if logs.count > 3 {
-            logs.removeSubrange(0...1)
-        }
-        updateLogsIds()
-        logs.append(Log(id: logs.count, message: LogMessage.random(type: .afterCpuMovement).text))
-        logs.append(Log(id: logs.count, message: "Waiting for user to move...", isFromTheMachine: false))
+        log.add(LogMessage.random(type: .afterCpuMovement).text)
+        log.add("Waiting for user to move...", isFromTheMachine: false)
     }
     
     /// Updates the scores of the two players
@@ -186,12 +154,6 @@ struct Othello: Game {
                 if position.player == .user { userScore += 1 }
                 if position.player == .cpu { cpuScore += 1 }
             }
-        }
-    }
-    
-    mutating private func updateLogsIds() {
-        for logIndex in logs.indices {
-            logs[logIndex].id = logIndex
         }
     }
     

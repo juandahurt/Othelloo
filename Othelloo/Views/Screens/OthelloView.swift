@@ -69,7 +69,7 @@ struct OthelloView: View {
                         othelloVM.cpuTurn()
                     })
                     Spacer()
-                    Terminal(logs: othelloVM.logs)
+                    Terminal(log: othelloVM.log)
                 }
                 .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)
                 .aspectRatio(contentMode: .fit)

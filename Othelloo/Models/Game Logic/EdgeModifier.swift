@@ -7,19 +7,19 @@
 
 import Foundation
 
-struct ValueModifier {
-    var valueType: ValueType
+struct EdgeModifier {
+    var edge: Edge
     var modifier: (inout Int, inout Int?) -> Void
     var stopCondition: (Int, Int?) -> Bool
     
     /// Chooses the correct modifier
     /// - Parameter direction: movement direction
     /// - Returns: The correct modifier.
-    static func chooseModifier(direction: Movement.Direction) -> ValueModifier? {
+    static func chooseModifier(direction: Movement.Direction) -> EdgeModifier? {
         switch direction {
         case .top:
-            return ValueModifier(
-                valueType: .row,
+            return EdgeModifier(
+                edge: .horizontal,
                 modifier: { value,_  in
                     value -= 1
                 },
@@ -28,8 +28,8 @@ struct ValueModifier {
                 }
             )
         case .right:
-            return ValueModifier(
-                valueType: .column,
+            return EdgeModifier(
+                edge: .vertical,
                 modifier: { value,_ in
                     value += 1
                 },
@@ -38,8 +38,8 @@ struct ValueModifier {
                 }
             )
         case .bottom:
-            return ValueModifier(
-                valueType: .row,
+            return EdgeModifier(
+                edge: .horizontal,
                 modifier: { value,_ in
                     value += 1
                 },
@@ -48,8 +48,8 @@ struct ValueModifier {
                 }
             )
         case .left:
-            return ValueModifier(
-                valueType: .column,
+            return EdgeModifier(
+                edge: .vertical,
                 modifier: { value,_ in
                     value -= 1
                 },
@@ -57,8 +57,8 @@ struct ValueModifier {
                     value == -1
                 })
         case .topLeft:
-            return ValueModifier(
-                valueType: .both,
+            return EdgeModifier(
+                edge: .all,
                 modifier: { row,col in
                     row -= 1
                     col! -= 1
@@ -67,8 +67,8 @@ struct ValueModifier {
                     row == -1 || col == -1
                 })
         case .topRight:
-            return ValueModifier(
-                valueType: .both,
+            return EdgeModifier(
+                edge: .all,
                 modifier: { row,col in
                     row -= 1
                     col! += 1
@@ -77,8 +77,8 @@ struct ValueModifier {
                     row == -1 || col == 8
                 })
         case .bottomRight:
-            return ValueModifier(
-                valueType: .both,
+            return EdgeModifier(
+                edge: .all,
                 modifier: { row,col in
                     row += 1
                     col! += 1
@@ -87,8 +87,8 @@ struct ValueModifier {
                     row == 8 || col == 8
                 })
         case .bottomLeft:
-            return ValueModifier(
-                valueType: .both,
+            return EdgeModifier(
+                edge: .all,
                 modifier: { row,col in
                     row += 1
                     col! -= 1
@@ -100,8 +100,8 @@ struct ValueModifier {
     }
 }
 
-enum ValueType {
-    case column
-    case row
-    case both
+enum Edge {
+    case vertical
+    case horizontal
+    case all
 }

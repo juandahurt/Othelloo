@@ -30,8 +30,8 @@ class OthelloVM: ObservableObject {
         othello.cpuScore
     }
     
-    var logs: [Log] {
-        othello.logs
+    var log: Log {
+        othello.log
     }
     
     var isOver: Bool {

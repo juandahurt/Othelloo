@@ -1,28 +1,25 @@
 //
-//  OthelloMovesChecker.swift
+//  OthelloMovementsFinder.swift
 //  Othelloo
 //
-//  Created by juandahurt on 16/02/21.
+//  Created by juandahurt on 21/02/21.
 //
 
 import Foundation
 
-/// Checks if the user can move in the Othello game
-struct OthelloMovementChecker: MovementChecker {
-    typealias State = Othello.State
-    
-    func checkIfPlayerCanMove(from position: Position, to direction: Movement.Direction, player: Player, state: State) -> Movement? {
-        if let modifier = ValueModifier.chooseModifier(direction: direction) {
+struct OthelloMovementsFinder: MovementsFinder {
+    static func checkIfPlayerCanMove(from position: Position, to direction: Movement.Direction, player: Player, state: [[Position]]) -> Movement? {
+        if let modifier = EdgeModifier.chooseModifier(direction: direction) {
             var value: Int
             var secondValue: Int?
-            switch modifier.valueType {
-            case .column:
+            switch modifier.edge {
+            case .vertical:
                 value = position.col
                 break
-            case .row:
+            case .horizontal:
                 value = position.row
                 break
-            case .both:
+            case .all:
                 value = position.row
                 secondValue = position.col
                 break
@@ -34,14 +31,14 @@ struct OthelloMovementChecker: MovementChecker {
             else { oponent = .cpu }
             while !modifier.stopCondition(value,secondValue) {
                 let currentPos: Position
-                switch modifier.valueType {
-                case .column:
+                switch modifier.edge {
+                case .vertical:
                     currentPos = state[position.row][value]
                     break
-                case .row:
+                case .horizontal:
                     currentPos = state[value][position.col]
                     break
-                case .both:
+                case .all:
                     currentPos = state[value][secondValue!]
                     break
                 }
@@ -68,5 +65,24 @@ struct OthelloMovementChecker: MovementChecker {
             }
         }
         return nil
+    }
+    
+    static func findMovements(for player: Player, directions: [Movement.Direction], in state: Othello.State) -> [Movement] {
+        var playerPositions: [Position] = []
+        var movements: [Movement] = []
+        for row in 0..<8 {
+            for col in 0..<8 {
+                let position = state[row][col]
+                if position.player == player { playerPositions.append(position) }
+            }
+        }
+        for position in playerPositions {
+            for direction in Movement.Direction.directions {
+                if let movement = Self.checkIfPlayerCanMove(from: position, to: direction, player: player, state: state) {
+                    movements.append(movement)
+                }
+            }
+        }
+        return movements
     }
 }
