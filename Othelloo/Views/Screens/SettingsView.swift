@@ -150,8 +150,9 @@ struct SettingsView: View {
                 .padding(.top, 40)
                 difficulty
                     .padding(.vertical, 40)
-                rules
+//                rules
                 Spacer()
+                BannerAd()
             }
         }
         .navigationBarHidden(true)

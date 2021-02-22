@@ -21,6 +21,7 @@
 		3D52B7AE25DD635B000539E4 /* EdgeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D52B7AD25DD635B000539E4 /* EdgeModifier.swift */; };
 		3D52B7B125DD64B9000539E4 /* MovementExcecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D52B7B025DD64B9000539E4 /* MovementExcecutor.swift */; };
 		3D52B7B925DD67F2000539E4 /* OthelloMovementExcecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D52B7B825DD67F2000539E4 /* OthelloMovementExcecutor.swift */; };
+		3D658AFF25E410AD0097F39C /* BannerAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D658AFE25E410AD0097F39C /* BannerAd.swift */; };
 		3D9E84EA25E31A54009657A1 /* MovementsFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9E84E925E31A54009657A1 /* MovementsFinder.swift */; };
 		3D9E84ED25E31BCE009657A1 /* OthelloMovementsFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9E84EC25E31BCE009657A1 /* OthelloMovementsFinder.swift */; };
 		3DBF894C25E0425A00702731 /* IntersitialAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBF894B25E0425A00702731 /* IntersitialAd.swift */; };
@@ -54,6 +55,7 @@
 		3D52B7AD25DD635B000539E4 /* EdgeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeModifier.swift; sourceTree = "<group>"; };
 		3D52B7B025DD64B9000539E4 /* MovementExcecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementExcecutor.swift; sourceTree = "<group>"; };
 		3D52B7B825DD67F2000539E4 /* OthelloMovementExcecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthelloMovementExcecutor.swift; sourceTree = "<group>"; };
+		3D658AFE25E410AD0097F39C /* BannerAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAd.swift; sourceTree = "<group>"; };
 		3D9E84E925E31A54009657A1 /* MovementsFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementsFinder.swift; sourceTree = "<group>"; };
 		3D9E84EC25E31BCE009657A1 /* OthelloMovementsFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthelloMovementsFinder.swift; sourceTree = "<group>"; };
 		3DBF894B25E0425A00702731 /* IntersitialAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntersitialAd.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		3D4E2BC125DC18560064801A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3D658AFD25E4109A0097F39C /* Ads */,
 				3D4E2BC425DC18720064801A /* Screens */,
 				3D4E2BC325DC18630064801A /* Components */,
 			);
@@ -194,7 +197,6 @@
 			isa = PBXGroup;
 			children = (
 				3D4E2BC825DC1F010064801A /* OthelloView.swift */,
-				3DBF894B25E0425A00702731 /* IntersitialAd.swift */,
 				3DF2B68F25E1EAAB00A4C37E /* SettingsView.swift */,
 			);
 			path = Screens;
@@ -208,6 +210,15 @@
 				3D52B7B025DD64B9000539E4 /* MovementExcecutor.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		3D658AFD25E4109A0097F39C /* Ads */ = {
+			isa = PBXGroup;
+			children = (
+				3DBF894B25E0425A00702731 /* IntersitialAd.swift */,
+				3D658AFE25E410AD0097F39C /* BannerAd.swift */,
+			);
+			path = Ads;
 			sourceTree = "<group>";
 		};
 		3DC0241B25DC6884007B6E73 /* Extensions */ = {
@@ -347,6 +358,7 @@
 				3DC0241025DC52B2007B6E73 /* Movement.swift in Sources */,
 				3DC0240A25DC5229007B6E73 /* Othello.swift in Sources */,
 				3D4E2BC925DC1F010064801A /* OthelloView.swift in Sources */,
+				3D658AFF25E410AD0097F39C /* BannerAd.swift in Sources */,
 				3DC0241925DC5734007B6E73 /* AlphaBeta.swift in Sources */,
 				3DE360C025DC775800699236 /* OthelloVM.swift in Sources */,
 				3D0263C425E00F1F00E47DA3 /* NoMovements.swift in Sources */,
