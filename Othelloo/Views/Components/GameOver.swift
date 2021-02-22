@@ -14,11 +14,11 @@ struct GameOver: View {
     
     func getCorrectTitle() -> String {
         if userScore > cpuScore {
-            return "Congratulations."
+            return "You won!"
         } else if userScore == cpuScore {
-            return "It's a draw!"
+            return "It's a draw."
         } else {
-            return "I'm sorry."
+            return "You lost."
         }
     }
     
@@ -33,10 +33,10 @@ struct GameOver: View {
                 .padding(5)
             VStack(spacing: 10) {
                 Text(getCorrectTitle())
-                    .font(.system(size: 25, weight: .bold, design: .monospaced))
+                    .font(.system(size: 20, weight: .bold, design: .monospaced))
                     .multilineTextAlignment(.center)
                 Text("Tap here to dismiss this message.")
-                    .font(.system(size: 16, weight: .regular, design: .monospaced))
+                    .font(.system(size: 14, weight: .regular, design: .monospaced))
             }
                 .foregroundColor(Color("White"))
         }

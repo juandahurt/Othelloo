@@ -34,6 +34,11 @@ struct Othello: Game {
     /// user must pass the turn?
     var userMustPassTheTurn: Bool = false
     
+    /// game difficulty
+    enum Difficulty {
+        case easy, medium, hard
+    }
+    
     init() {
         initState()
         initCostTable()
@@ -132,9 +137,19 @@ struct Othello: Game {
     }
     
     /// Excecutes a cpu movement using the alpha-beta algorithm
-    mutating func cpuTurn() {
-        let alphaBeta = AlphaBeta(game: self, depth: 0)
-        self.state = alphaBeta.run(state: self.state)
+    /// - Parameter difficulty: ai difficulty
+    mutating func cpuTurn(difficulty: Difficulty) {
+        if difficulty == .easy {
+            if let movement = findMovements(for: .cpu).randomElement() {
+                self.state = OthelloMovementExcecutor().excecute(movement: movement, by: .cpu, in: self.state)
+            }
+        } else {
+            let depth: Int
+            if difficulty == .medium { depth = 0 }
+            else { depth = 2 }
+            let alphaBeta = AlphaBeta(game: self, depth: depth)
+            self.state = alphaBeta.run(state: self.state)
+        }
         isOver = isTerminal(state: state)
         updateScores()
         if isOver { return }

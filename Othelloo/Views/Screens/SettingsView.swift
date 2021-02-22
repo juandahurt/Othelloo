@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var userSettings: UserSettings
     
     var difficulty: some View {
         ZStack {
@@ -16,18 +17,29 @@ struct SettingsView: View {
                 .fill(Color("Black"))
             VStack {
                 Text("Difficulty")
-                    .font(.system(size: 18, weight: .bold, design: .monospaced))
+                    .font(.system(size: 16, weight: .bold, design: .monospaced))
                     .padding(.bottom, 10)
                 HStack {
                     Text("Easy")
-                        .font(.system(size: 18, weight: .bold, design: .monospaced))
-                        .underline(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/, color: Color("White"))
+                        .font(.system(size: 14, weight: userSettings.difficulty == .easy ? .bold :  .regular, design: .monospaced))
+                        .underline(userSettings.difficulty == .easy, color: Color("White"))
+                        .onTapGesture {
+                            userSettings.difficulty = .easy
+                        }
                     Spacer()
                     Text("Normal")
-                        .font(.system(size: 18, weight: .regular, design: .monospaced))
+                        .font(.system(size: 14, weight: userSettings.difficulty == .medium ? .bold :  .regular, design: .monospaced))
+                        .underline(userSettings.difficulty == .medium, color: Color("White"))
+                        .onTapGesture {
+                            userSettings.difficulty = .medium
+                        }
                     Spacer()
                     Text("Hard")
-                        .font(.system(size: 18, weight: .regular, design: .monospaced))
+                        .font(.system(size: 14, weight: userSettings.difficulty == .hard ? .bold :  .regular, design: .monospaced))
+                        .underline(userSettings.difficulty == .hard, color: Color("White"))
+                        .onTapGesture {
+                            userSettings.difficulty = .hard
+                        }
                 }
             }.padding()
         }.frame(height: 60)

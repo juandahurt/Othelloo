@@ -10,6 +10,7 @@ import SwiftUI
 struct OthelloView: View {
     @StateObject var othelloVM: OthelloVM
     var intersitial = Interstitial()
+    @EnvironmentObject var userSettings: UserSettings
     
     var background: some View {
         Rectangle()
@@ -66,7 +67,7 @@ struct OthelloView: View {
                     Spacer()
                     Board(state: othelloVM.currentState, possibleMovements: othelloVM.possibleMovements, possibleMovementOnTap: { movement in
                         othelloVM.userTurn(movement: movement)
-                        othelloVM.cpuTurn()
+                        othelloVM.cpuTurn(difficulty: userSettings.difficulty)
                     })
                     Spacer()
                     Terminal(log: othelloVM.log)
@@ -84,7 +85,7 @@ struct OthelloView: View {
                     }
                     if othelloVM.userMustPassTheTurn {
                         NoMovements {
-                            othelloVM.passTurnToCpu()
+                            othelloVM.passTurnToCpu(difficulty: userSettings.difficulty)
                         }
                         .animation(.linear)
                         .transition(.slide)

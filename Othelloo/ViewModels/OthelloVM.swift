@@ -46,16 +46,16 @@ class OthelloVM: ObservableObject {
         othello.userTurn(movement: movement)
     }
     
-    func cpuTurn() {
+    func cpuTurn(difficulty: Othello.Difficulty) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .random(in: 0.5...1)) {
-            self.othello.cpuTurn()
+            self.othello.cpuTurn(difficulty: difficulty)
         }
     }
     
-    func passTurnToCpu() {
+    func passTurnToCpu(difficulty: Othello.Difficulty) {
         othello.passTurnToCpu()
         DispatchQueue.main.asyncAfter(deadline: .now() + .random(in: 0.5...1)) {
-            self.othello.cpuTurn()
+            self.othello.cpuTurn(difficulty: difficulty)
         }
     }
     
