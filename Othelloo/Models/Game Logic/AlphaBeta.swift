@@ -28,7 +28,7 @@ struct AlphaBeta<T: Game> {
         var beta: Int = .infinity
         for action in game.actions(for: .cpu, at: state) {
             let value = alphaBetaSearch(state: action, depth: depth, alpha: &alpha, beta: &beta, player: .cpu)
-            if value > bestValue {
+            if value >= bestValue {
                 bestValue = value
                 bestAction = action
             }

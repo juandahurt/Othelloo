@@ -10,6 +10,7 @@
 		3D0263C125DF43EE00E47DA3 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0263C025DF43EE00E47DA3 /* GameOver.swift */; };
 		3D0263C425E00F1F00E47DA3 /* NoMovements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0263C325E00F1F00E47DA3 /* NoMovements.swift */; };
 		3D135D5825DECA4900FBC389 /* LogMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D135D5725DECA4900FBC389 /* LogMessage.swift */; };
+		3D2482E325E559C400A4E550 /* OthelloCpuMovementTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2482E225E559C400A4E550 /* OthelloCpuMovementTest.swift */; };
 		3D2AB9BA25E433B000D6D4CB /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AB9B925E433B000D6D4CB /* UserSettings.swift */; };
 		3D376BEE25DDACDC004F4AF3 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D376BED25DDACDC004F4AF3 /* Log.swift */; };
 		3D4E2BB225DC18400064801A /* OthellooApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4E2BB125DC18400064801A /* OthellooApp.swift */; };
@@ -39,10 +40,23 @@
 		887761794D795C45EE655853 /* Pods_Othelloo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFCD261A162145A964DD0E1 /* Pods_Othelloo.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3D2482DB25E5587900A4E550 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D4E2BA625DC18400064801A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D4E2BAD25DC18400064801A;
+			remoteInfo = Othelloo;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		3D0263C025DF43EE00E47DA3 /* GameOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
 		3D0263C325E00F1F00E47DA3 /* NoMovements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMovements.swift; sourceTree = "<group>"; };
 		3D135D5725DECA4900FBC389 /* LogMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMessage.swift; sourceTree = "<group>"; };
+		3D2482D625E5587900A4E550 /* OthellooTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OthellooTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D2482DA25E5587900A4E550 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D2482E225E559C400A4E550 /* OthelloCpuMovementTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthelloCpuMovementTest.swift; sourceTree = "<group>"; };
 		3D2AB9B925E433B000D6D4CB /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		3D376BED25DDACDC004F4AF3 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		3D4E2BAE25DC18400064801A /* Othelloo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Othelloo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +91,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3D2482D325E5587900A4E550 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3D4E2BAB25DC18400064801A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -118,10 +139,20 @@
 			path = "Game Logic";
 			sourceTree = "<group>";
 		};
+		3D2482D725E5587900A4E550 /* OthellooTests */ = {
+			isa = PBXGroup;
+			children = (
+				3D2482DA25E5587900A4E550 /* Info.plist */,
+				3D2482E225E559C400A4E550 /* OthelloCpuMovementTest.swift */,
+			);
+			path = OthellooTests;
+			sourceTree = "<group>";
+		};
 		3D4E2BA525DC18400064801A = {
 			isa = PBXGroup;
 			children = (
 				3D4E2BB025DC18400064801A /* Othelloo */,
+				3D2482D725E5587900A4E550 /* OthellooTests */,
 				3D4E2BAF25DC18400064801A /* Products */,
 				1C1E201E545C6B3E551D8BAF /* Pods */,
 				3189084F4CC14D7F198C51F6 /* Frameworks */,
@@ -132,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				3D4E2BAE25DC18400064801A /* Othelloo.app */,
+				3D2482D625E5587900A4E550 /* OthellooTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -243,6 +275,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3D2482D525E5587900A4E550 /* OthellooTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D2482DF25E5587900A4E550 /* Build configuration list for PBXNativeTarget "OthellooTests" */;
+			buildPhases = (
+				3D2482D225E5587900A4E550 /* Sources */,
+				3D2482D325E5587900A4E550 /* Frameworks */,
+				3D2482D425E5587900A4E550 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3D2482DC25E5587900A4E550 /* PBXTargetDependency */,
+			);
+			name = OthellooTests;
+			productName = OthellooTests;
+			productReference = 3D2482D625E5587900A4E550 /* OthellooTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3D4E2BAD25DC18400064801A /* Othelloo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D4E2BBD25DC18430064801A /* Build configuration list for PBXNativeTarget "Othelloo" */;
@@ -271,6 +321,10 @@
 				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
+					3D2482D525E5587900A4E550 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 3D4E2BAD25DC18400064801A;
+					};
 					3D4E2BAD25DC18400064801A = {
 						CreatedOnToolsVersion = 12.3;
 					};
@@ -290,11 +344,19 @@
 			projectRoot = "";
 			targets = (
 				3D4E2BAD25DC18400064801A /* Othelloo */,
+				3D2482D525E5587900A4E550 /* OthellooTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3D2482D425E5587900A4E550 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3D4E2BAC25DC18400064801A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -349,6 +411,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3D2482D225E5587900A4E550 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D2482E325E559C400A4E550 /* OthelloCpuMovementTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3D4E2BAA25DC18400064801A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -385,7 +455,57 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3D2482DC25E5587900A4E550 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D4E2BAD25DC18400064801A /* Othelloo */;
+			targetProxy = 3D2482DB25E5587900A4E550 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		3D2482DD25E5587900A4E550 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9TP4HMDZ7W;
+				INFOPLIST_FILE = OthellooTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = juandahurt.OthellooTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Othelloo.app/Othelloo";
+			};
+			name = Debug;
+		};
+		3D2482DE25E5587900A4E550 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9TP4HMDZ7W;
+				INFOPLIST_FILE = OthellooTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = juandahurt.OthellooTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Othelloo.app/Othelloo";
+			};
+			name = Release;
+		};
 		3D4E2BBB25DC18430064801A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -551,6 +671,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3D2482DF25E5587900A4E550 /* Build configuration list for PBXNativeTarget "OthellooTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D2482DD25E5587900A4E550 /* Debug */,
+				3D2482DE25E5587900A4E550 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3D4E2BA925DC18400064801A /* Build configuration list for PBXProject "Othelloo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
