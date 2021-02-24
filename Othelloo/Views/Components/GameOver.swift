@@ -52,11 +52,11 @@ struct GameOver: View {
                     .multilineTextAlignment(.center)
                     .id("Title")
                 Text("Tap here to dismiss this message.")
-                    .font(.system(size: 14, weight: .regular, design: .monospaced))
+                    .font(.system(size: fontSize, weight: .regular, design: .monospaced))
             }
                 .foregroundColor(Color("Black"))
         }
-        .frame(width: UIScreen.main.bounds.width - 30, height: 120)
+        .frame(width: UIScreen.main.bounds.width - 30, height: UIScreen.main.bounds.height * 0.1)
         .onTapGesture {
             onTap()
         }
@@ -64,6 +64,9 @@ struct GameOver: View {
             chooseCorrectDesign()
         }
     }
+    
+    let titleFontSize = UIScreen.main.bounds.height * 0.02
+    let fontSize = UIScreen.main.bounds.height * 0.015
 }
 
 struct GameOverPreviews: PreviewProvider {
@@ -71,5 +74,6 @@ struct GameOverPreviews: PreviewProvider {
     
     static var previews: some View {
         OthelloView(othelloVM: othelloVM)
+            .previewDevice("iPhone 11 Pro Max")
     }
 }

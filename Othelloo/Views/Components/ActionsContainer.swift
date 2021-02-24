@@ -18,6 +18,8 @@ struct ActionsContainer: View {
                 Spacer()
                 VStack {
                     Image("New Game")
+                        .resizable()
+                        .frame(width: UIScreen.main.bounds.height * 0.03, height: UIScreen.main.bounds.height * 0.03)
                     Text("New Game")
                 }
                 .onTapGesture {
@@ -27,13 +29,24 @@ struct ActionsContainer: View {
                 NavigationLink(destination: SettingsView()) {
                     VStack {
                         Image("Settings")
+                            .resizable()
+                            .frame(width: UIScreen.main.bounds.height * 0.03, height: UIScreen.main.bounds.height * 0.03)
                         Text("Settings")
                     }
                 }
                 Spacer()
             }
-                .font(.system(size: 12, weight: .bold, design: .monospaced))
+            .font(.system(size: UIScreen.main.bounds.height * 0.015, weight: .bold, design: .monospaced))
                 .foregroundColor(Color("White").opacity(0.5))
         }
+    }
+}
+
+struct ActionsContainerPreviews: PreviewProvider {
+    static let othelloVM = OthelloVM()
+    
+    static var previews: some View {
+        OthelloView(othelloVM: othelloVM)
+            .previewDevice("iPhone 11 Pro Max")
     }
 }

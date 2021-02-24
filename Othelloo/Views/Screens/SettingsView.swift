@@ -17,25 +17,25 @@ struct SettingsView: View {
                 .fill(Color("Black"))
             VStack {
                 Text("Difficulty")
-                    .font(.system(size: 16, weight: .bold, design: .monospaced))
+                    .font(.system(size: titleSize, design: .monospaced))
                     .padding(.bottom, 10)
                 HStack {
                     Text("Easy")
-                        .font(.system(size: 14, weight: userSettings.difficulty == .easy ? .bold :  .regular, design: .monospaced))
+                        .font(.system(size: bodySize, weight: userSettings.difficulty == .easy ? .bold :  .regular, design: .monospaced))
                         .underline(userSettings.difficulty == .easy, color: Color("White"))
                         .onTapGesture {
                             userSettings.difficulty = .easy
                         }
                     Spacer()
                     Text("Normal")
-                        .font(.system(size: 14, weight: userSettings.difficulty == .medium ? .bold :  .regular, design: .monospaced))
+                        .font(.system(size: bodySize, weight: userSettings.difficulty == .medium ? .bold :  .regular, design: .monospaced))
                         .underline(userSettings.difficulty == .medium, color: Color("White"))
                         .onTapGesture {
                             userSettings.difficulty = .medium
                         }
                     Spacer()
                     Text("Hard")
-                        .font(.system(size: 14, weight: userSettings.difficulty == .hard ? .bold :  .regular, design: .monospaced))
+                        .font(.system(size: bodySize, weight: userSettings.difficulty == .hard ? .bold :  .regular, design: .monospaced))
                         .underline(userSettings.difficulty == .hard, color: Color("White"))
                         .onTapGesture {
                             userSettings.difficulty = .hard
@@ -45,105 +45,105 @@ struct SettingsView: View {
         }.frame(height: 60)
     }
     
-    func miniBoard(userIsAt userPosition: Position, cpuIsAt cpuPosition: Position, possiblePosition: Position) -> some View {
-        let screenWidth = UIScreen.main.bounds.width
-        let cellWidth = screenWidth / 12
-        return Group {
-            VStack(spacing: 0) {
-                ForEach(0..<3) { row in
-                    HStack(spacing: 0) {
-                        ForEach(0..<3) { col in
-                            ZStack {
-                                Rectangle()
-                                    .fill((row + col) % 2 == 0 ? brownColor : brownLightColor)
-                                    .frame(width: cellWidth, height: cellWidth)
-                                Circle()
-                                    .fill(getCorrectColor(at: Position(row: row, col: col, player: .none), userPosition: userPosition, cpuPosition: cpuPosition))
-                                    .frame(width: cellWidth * 0.8, height: cellWidth * 0.8)
-                                Circle()
-                                    .fill(row == possiblePosition.row && col == possiblePosition.col ? userColor.opacity(0.3) : .clear)
-                                    .frame(width: cellWidth * 0.2, height: cellWidth * 0.2)
-                            }
-                        }
-                    }
-                }
-            }
-        }.cornerRadius(5)
-    }
-    
-    private func getCorrectColor(at position: Position, userPosition: Position, cpuPosition: Position) -> Color {
-        position == userPosition ? userColor : position == cpuPosition ? cpuColor : .clear
-    }
-    
-    var rules: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 5)
-                .fill(Color("Black"))
-            VStack {
-                Text("Rules")
-                    .font(.system(size: 18, weight: .bold, design: .monospaced))
-                    .padding(.bottom)
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 20) {
-                        horizontalRule
-                        verticalRule
-                        diagonalRule
-                    }
-                }
-            }.padding()
-        }.aspectRatio(contentMode: .fit)
-    }
-    
-    var horizontalRule: some View {
-        VStack {
-            miniBoard(
-                userIsAt: Position(row: 1, col: 0, player: .none),
-                cpuIsAt: Position(row: 1, col: 1, player: .none),
-                possiblePosition: Position(row: 1, col: 2, player: .none)
-            )
-            Text("Horizontal")
-                .font(.system(size: 16, weight: .regular, design: .monospaced))
-            HStack {
-                Text("Yes")
-                    .underline()
-                Text("No")
-            }.font(.system(size: 12, weight: .regular, design: .monospaced))
-        }
-    }
-    
-    var verticalRule: some View {
-        VStack {
-            miniBoard(
-                userIsAt: Position(row: 2, col: 1, player: .none),
-                cpuIsAt: Position(row: 1, col: 1, player: .none),
-                possiblePosition: Position(row: 0, col: 1, player: .none)
-            )
-            Text("Vertical")
-                .font(.system(size: 16, weight: .regular, design: .monospaced))
-            HStack {
-                Text("Yes")
-                    .underline()
-                Text("No")
-            }.font(.system(size: 12, weight: .regular, design: .monospaced))
-        }
-    }
-    
-    var diagonalRule: some View {
-        VStack {
-            miniBoard(
-                userIsAt: Position(row: 2, col: 0, player: .none),
-                cpuIsAt: Position(row: 1, col: 1, player: .none),
-                possiblePosition: Position(row: 0, col: 2, player: .none)
-            )
-            Text("Diagonal")
-                .font(.system(size: 16, weight: .regular, design: .monospaced))
-            HStack {
-                Text("Yes")
-                    .underline()
-                Text("No")
-            }.font(.system(size: 12, weight: .regular, design: .monospaced))
-        }
-    }
+//    func miniBoard(userIsAt userPosition: Position, cpuIsAt cpuPosition: Position, possiblePosition: Position) -> some View {
+//        let screenWidth = UIScreen.main.bounds.width
+//        let cellWidth = screenWidth / 12
+//        return Group {
+//            VStack(spacing: 0) {
+//                ForEach(0..<3) { row in
+//                    HStack(spacing: 0) {
+//                        ForEach(0..<3) { col in
+//                            ZStack {
+//                                Rectangle()
+//                                    .fill((row + col) % 2 == 0 ? brownColor : brownLightColor)
+//                                    .frame(width: cellWidth, height: cellWidth)
+//                                Circle()
+//                                    .fill(getCorrectColor(at: Position(row: row, col: col, player: .none), userPosition: userPosition, cpuPosition: cpuPosition))
+//                                    .frame(width: cellWidth * 0.8, height: cellWidth * 0.8)
+//                                Circle()
+//                                    .fill(row == possiblePosition.row && col == possiblePosition.col ? userColor.opacity(0.3) : .clear)
+//                                    .frame(width: cellWidth * 0.2, height: cellWidth * 0.2)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }.cornerRadius(5)
+//    }
+//
+//    private func getCorrectColor(at position: Position, userPosition: Position, cpuPosition: Position) -> Color {
+//        position == userPosition ? userColor : position == cpuPosition ? cpuColor : .clear
+//    }
+//
+//    var rules: some View {
+//        ZStack {
+//            RoundedRectangle(cornerRadius: 5)
+//                .fill(Color("Black"))
+//            VStack {
+//                Text("Rules")
+//                    .font(.system(size: 18, weight: .bold, design: .monospaced))
+//                    .padding(.bottom)
+//                ScrollView(.horizontal, showsIndicators: false) {
+//                    HStack(spacing: 20) {
+//                        horizontalRule
+//                        verticalRule
+//                        diagonalRule
+//                    }
+//                }
+//            }.padding()
+//        }.aspectRatio(contentMode: .fit)
+//    }
+//
+//    var horizontalRule: some View {
+//        VStack {
+//            miniBoard(
+//                userIsAt: Position(row: 1, col: 0, player: .none),
+//                cpuIsAt: Position(row: 1, col: 1, player: .none),
+//                possiblePosition: Position(row: 1, col: 2, player: .none)
+//            )
+//            Text("Horizontal")
+//                .font(.system(size: 16, weight: .regular, design: .monospaced))
+//            HStack {
+//                Text("Yes")
+//                    .underline()
+//                Text("No")
+//            }.font(.system(size: 12, weight: .regular, design: .monospaced))
+//        }
+//    }
+//
+//    var verticalRule: some View {
+//        VStack {
+//            miniBoard(
+//                userIsAt: Position(row: 2, col: 1, player: .none),
+//                cpuIsAt: Position(row: 1, col: 1, player: .none),
+//                possiblePosition: Position(row: 0, col: 1, player: .none)
+//            )
+//            Text("Vertical")
+//                .font(.system(size: 16, weight: .regular, design: .monospaced))
+//            HStack {
+//                Text("Yes")
+//                    .underline()
+//                Text("No")
+//            }.font(.system(size: 12, weight: .regular, design: .monospaced))
+//        }
+//    }
+//
+//    var diagonalRule: some View {
+//        VStack {
+//            miniBoard(
+//                userIsAt: Position(row: 2, col: 0, player: .none),
+//                cpuIsAt: Position(row: 1, col: 1, player: .none),
+//                possiblePosition: Position(row: 0, col: 2, player: .none)
+//            )
+//            Text("Diagonal")
+//                .font(.system(size: 16, weight: .regular, design: .monospaced))
+//            HStack {
+//                Text("Yes")
+//                    .underline()
+//                Text("No")
+//            }.font(.system(size: 12, weight: .regular, design: .monospaced))
+//        }
+//    }
     
     var closeButton: some View {
         Image("Close")
@@ -180,4 +180,14 @@ struct SettingsView: View {
     private let background = Color("Green")
     private let brownColor = Color("Brown")
     private let brownLightColor = Color("Brown-Light")
+    private let titleSize = UIScreen.main.bounds.height * 0.016
+    private let bodySize = UIScreen.main.bounds.height * 0.013
+}
+
+struct SettingsPreviews: PreviewProvider {
+    static var previews: some View {
+        SettingsView()
+            .previewDevice("iPad Pro (12.9-inch) (4th generation)")
+            .environmentObject(UserSettings())
+    }
 }

@@ -11,10 +11,9 @@ struct Board: View {
     var state: Othello.State
     var possibleMovements: [Movement]
     var possibleMovementOnTap: (Movement) -> Void
+    @State private var cellWidth = (UIScreen.main.bounds.width - 50 ) / 8
     
     func cell(row: Int, col: Int) -> some View {
-        let screenWidth = UIScreen.main.bounds.width
-        let cellWidth = (screenWidth - 50) / 8
         let player = state[row][col].player
         let possibleMovement = possibleMovements.first(where: { $0.to.row == row && $0.to.col == col })
         
@@ -69,4 +68,13 @@ struct Board: View {
     let greenLightColor = Color("Green-Light")
     let brownColor = Color("Brown")
     let brownLightColor = Color("Brown-Light")
+}
+
+struct BoardPreview: PreviewProvider {
+    static let othelloVM = OthelloVM(game: Othello())
+    
+    static var previews: some View {
+        OthelloView(othelloVM: othelloVM)
+            .previewDevice("iPhone 8")
+    }
 }

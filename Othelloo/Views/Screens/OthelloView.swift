@@ -20,14 +20,15 @@ struct OthelloView: View {
     }
     
     func scores() -> some View {
-        let screenWidth = UIScreen.main.bounds.width
-        let cellWidth = (screenWidth - 50) / 8
+        let fontSize = UIScreen.main.bounds.height * 0.03
+        let cellWidth = (UIScreen.main.bounds.width - 50 ) / 8
+        let borderWidth = UIScreen.main.bounds.width * 0.008
         return ZStack {
             RoundedRectangle(cornerRadius: 5)
                 .fill(Color("Green-Light"))
             RoundedRectangle(cornerRadius: 5)
                 .fill(Color("Green"))
-                .padding(5)
+                .padding(borderWidth)
             HStack {
                 Spacer()
                 VStack {
@@ -47,7 +48,7 @@ struct OthelloView: View {
             }
         }
         .foregroundColor(Color("White"))
-        .font(.system(size: 16, weight: .bold, design: .default))
+        .font(.system(size: fontSize, weight: .bold, design: .default))
     }
     
     var body: some View {
@@ -94,4 +95,13 @@ struct OthelloView: View {
     }
     
     let backgroundColor = Color("Green")
+}
+
+struct OthelloPreview: PreviewProvider {
+    static let othelloVM = OthelloVM(game: Othello())
+    
+    static var previews: some View {
+        OthelloView(othelloVM: othelloVM)
+            .previewDevice("iPad Pro (12.9-inch) (4th generation)")
+    }
 }

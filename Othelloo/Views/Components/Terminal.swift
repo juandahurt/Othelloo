@@ -41,34 +41,36 @@ struct Terminal: View {
     }
     
     @ViewBuilder var body: some View {
-        if isPresented {
-            ZStack {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            if isPresented {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(backgroundColor)
-                    logsContainer
-                    HStack {
-                        Spacer(minLength: 0)
-                        terminalButton
-                    }.padding(.trailing, 5)
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(backgroundColor)
+                        logsContainer
+                        HStack {
+                            Spacer(minLength: 0)
+                            terminalButton
+                        }.padding(.trailing, 5)
+                    }
                 }
-            }
-            .matchedGeometryEffect(id: "terminal", in: animation)
-            .frame(width: presentedWidth, height: 135)
-        } else {
-            HStack {
-                Spacer()
-                ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(backgroundColor)
-                    HStack {
-                        Spacer(minLength: 0)
-                        terminalButton
-                    }.padding(.trailing, 5)
-                }.frame(width: hiddenWidth, height: 135)
                 .matchedGeometryEffect(id: "terminal", in: animation)
+                .frame(width: presentedWidth, height: 135)
+            } else {
+                HStack {
+                    Spacer()
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(backgroundColor)
+                        HStack {
+                            Spacer(minLength: 0)
+                            terminalButton
+                        }.padding(.trailing, 5)
+                    }.frame(width: hiddenWidth, height: 135)
+                    .matchedGeometryEffect(id: "terminal", in: animation)
+                }
+                .frame(maxWidth: presentedWidth)
             }
-            .frame(maxWidth: presentedWidth)
         }
     }
     
@@ -76,4 +78,13 @@ struct Terminal: View {
     let hiddenWidth: CGFloat = 40
     let backgroundColor = Color("Black")
     let logsColor = Color("White")
+}
+
+struct TerminalPreviews: PreviewProvider {
+    static let othelloVM = OthelloVM()
+    
+    static var previews: some View {
+        OthelloView(othelloVM: othelloVM)
+            .previewDevice("iPhone 11 Pro Max")
+    }
 }
