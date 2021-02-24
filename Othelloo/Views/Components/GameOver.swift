@@ -11,38 +11,65 @@ struct GameOver: View {
     var userScore: Int
     var cpuScore: Int
     var onTap: () -> Void
+    @State private var borderColor: Color = .clear
+    @State private var backgroundColor: Color = .clear
+    @State private var title: String = ""
     
-    func getCorrectTitle() -> String {
+    init(userScore: Int, cpuScore: Int, onTap: @escaping () -> Void) {
+        self.userScore = userScore
+        self.cpuScore = cpuScore
+        self.onTap = onTap
+    }
+    
+    func chooseCorrectDesign() {
         if userScore > cpuScore {
-            return "You won!"
+            borderColor = Color("Gold-Dark")
+            backgroundColor = Color("Gold")
+            title = "You won!"
         } else if userScore == cpuScore {
-            return "It's a draw."
+            borderColor = Color("White-Dark")
+            backgroundColor = Color("White")
+            title = "It's a draw."
         } else {
-            return "You lost."
+            borderColor = Color("Red-Dark")
+            backgroundColor = Color("Red")
+            title = "You lost."
         }
     }
     
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(Color("Black"))
+                .fill(borderColor)
                 .cornerRadius(5)
             Rectangle()
-                .fill(Color("Black-Dark"))
+                .fill(backgroundColor)
                 .cornerRadius(5)
                 .padding(5)
             VStack(spacing: 10) {
-                Text(getCorrectTitle())
+                Text(title)
                     .font(.system(size: 20, weight: .bold, design: .monospaced))
                     .multilineTextAlignment(.center)
+                    .id("Title")
                 Text("Tap here to dismiss this message.")
                     .font(.system(size: 14, weight: .regular, design: .monospaced))
             }
-                .foregroundColor(Color("White"))
+                .foregroundColor(Color("Black"))
         }
         .frame(width: UIScreen.main.bounds.width - 30, height: 120)
         .onTapGesture {
             onTap()
         }
+        .onAppear {
+            chooseCorrectDesign()
+        }
+    }
+}
+
+struct GameOverPreviews: PreviewProvider {
+    static let othelloVM = OthelloVM(game: Othello(isOver: true, userScore: 5, cpuScore: 3))
+    
+    static var previews: some View {
+        OthelloView(othelloVM: othelloVM)
     }
 }

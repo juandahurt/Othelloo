@@ -10,8 +10,8 @@ import Foundation
 class OthelloVM: ObservableObject {
     @Published private var othello: Othello
     
-    init() {
-        othello = Othello()
+    init(game: Othello = Othello()) {
+        othello = game
     }
     
     var currentState: Othello.State {

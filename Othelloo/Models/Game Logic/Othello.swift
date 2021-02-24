@@ -45,6 +45,13 @@ struct Othello: Game {
         initPossibleMoves()
     }
     
+    init(isOver: Bool, userScore: Int, cpuScore: Int) {
+        self.init()
+        self.isOver = isOver
+        self.userScore = userScore
+        self.cpuScore = cpuScore
+    }
+    
     // MARK: - Initalizers
     mutating private func initState() {
         state = []
