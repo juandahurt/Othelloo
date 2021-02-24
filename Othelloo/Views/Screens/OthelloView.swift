@@ -51,48 +51,46 @@ struct OthelloView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                background
-                VStack {
-                    HStack {
-                        scores()
-                        Spacer(minLength: 15)
-                        ActionsContainer(newGameOnTap: {
-                            othelloVM.restart()
-                            intersitial.showAd()
-                        })
-                    }
-                        .padding(.horizontal, 15)
-                    Spacer()
-                    Board(state: othelloVM.currentState, possibleMovements: othelloVM.possibleMovements, possibleMovementOnTap: { movement in
-                        othelloVM.userTurn(movement: movement)
-                        othelloVM.cpuTurn(difficulty: userSettings.difficulty)
+        ZStack {
+            background
+            VStack {
+                HStack {
+                    scores()
+                    Spacer(minLength: 15)
+                    ActionsContainer(newGameOnTap: {
+                        othelloVM.restart()
+                        intersitial.showAd()
                     })
-                    Spacer()
-                    Terminal(log: othelloVM.log)
                 }
-                .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)
-                .aspectRatio(contentMode: .fit)
-                Group {
-                    if othelloVM.isOver {
-                        GameOver(userScore: othelloVM.userScore, cpuScore: othelloVM.cpuScore) {
-                            othelloVM.restart()
-                            intersitial.showAd()
-                        }
-                        .animation(.linear)
-                        .transition(.slide)
+                    .padding(.horizontal, 15)
+                Spacer()
+                Board(state: othelloVM.currentState, possibleMovements: othelloVM.possibleMovements, possibleMovementOnTap: { movement in
+                    othelloVM.userTurn(movement: movement)
+                    othelloVM.cpuTurn(difficulty: userSettings.difficulty)
+                })
+                Spacer()
+                Terminal(log: othelloVM.log)
+            }
+            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)
+            .aspectRatio(contentMode: .fit)
+            Group {
+                if othelloVM.isOver {
+                    GameOver(userScore: othelloVM.userScore, cpuScore: othelloVM.cpuScore) {
+                        othelloVM.restart()
+                        intersitial.showAd()
                     }
-                    if othelloVM.userMustPassTheTurn {
-                        NoMovements {
-                            othelloVM.passTurnToCpu(difficulty: userSettings.difficulty)
-                        }
-                        .animation(.linear)
-                        .transition(.slide)
-                    }
+                    .animation(.linear)
+                    .transition(.slide)
                 }
-            }.navigationBarHidden(true)
-        }
+                if othelloVM.userMustPassTheTurn {
+                    NoMovements {
+                        othelloVM.passTurnToCpu(difficulty: userSettings.difficulty)
+                    }
+                    .animation(.linear)
+                    .transition(.slide)
+                }
+            }
+        }.navigationBarHidden(true)
     }
     
     let backgroundColor = Color("Green")
