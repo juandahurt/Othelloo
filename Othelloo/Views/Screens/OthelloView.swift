@@ -20,7 +20,7 @@ struct OthelloView: View {
     }
     
     func scores() -> some View {
-        let fontSize = UIScreen.main.bounds.height * 0.03
+        let fontSize = UIScreen.main.bounds.height * 0.025
         let cellWidth = (UIScreen.main.bounds.width - 50 ) / 8
         let borderWidth = UIScreen.main.bounds.width * 0.008
         return ZStack {

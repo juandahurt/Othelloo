@@ -180,8 +180,8 @@ struct SettingsView: View {
     private let background = Color("Green")
     private let brownColor = Color("Brown")
     private let brownLightColor = Color("Brown-Light")
-    private let titleSize = UIScreen.main.bounds.height * 0.016
-    private let bodySize = UIScreen.main.bounds.height * 0.013
+    private let titleSize = UIScreen.main.bounds.height * 0.017
+    private let bodySize = UIScreen.main.bounds.height * 0.015
 }
 
 struct SettingsPreviews: PreviewProvider {
